@@ -1,5 +1,8 @@
 {
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
+  "cli": {
+    "analytics": false
+  },
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
@@ -31,9 +34,25 @@
               "src/assets"
             ],
             "styles": [
-              "src/styles.scss"
+              "./node_modules/animate.css/animate.css",
+              "./node_modules/hover.css/css/hover-min.css",
+              "./node_modules/font-awesome/scss/font-awesome.scss",
+              "./node_modules/primeicons/primeicons.css",
+              "./node_modules/primeng-lts/resources/themes/bootstrap4-dark-blue/theme.css",
+              "./node_modules/primeng-lts/resources/primeng.min.css",                       
+              "./node_modules/fullcalendar/main.min.css",
+              "./src/styles.scss",              
+              "./src/assets/sass/now-ui-kit.scss",
+              "./src/assets/css/demo.css",              
+              "./src/assets/sass/mis-estilos/notificaciones.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "./node_modules/bootstrap/dist/js/bootstrap.min.js",              
+              "./node_modules/jspdf/dist/jspdf.min.js",
+              "./node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.js",                        
+              "./node_modules/hammerjs/hammer.min.js"
+
+            ]
           },
           "configurations": {
             "production": {

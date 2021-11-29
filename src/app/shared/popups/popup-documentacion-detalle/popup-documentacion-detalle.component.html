@@ -1,0 +1,32 @@
+<p-table
+  #dt
+  class="pt-2"
+  [columns]="cols"
+  [value]="documentos"
+  selectionMode="single"
+  [resizableColumns]="true"
+  [(selection)]="selectedItem"
+  (onRowSelect)="selectedRow($event)"
+  [scrollable]="true"
+  scrollHeight="400px"
+  styleClass="p-datatable-sm  p-datatable-gridlines"
+  [loading]="loading"
+  [showLoader]="true"
+  loadingIcon="fas fa-spinner fa-2x icon-color-green"
+>
+  <ng-template pTemplate="body" let-elementos>
+    <tr [pSelectableRow]="elementos">
+      <td style="width: 40%">{{ elementos.archivo }}</td>
+      <td style="width: 46%">{{ elementos.descripcion }}</td>
+      <td style="width: 6%">{{ elementos.estado }}</td>
+      <td style="width: 8%">
+        <button
+          class="btn btn-info btn-block"
+          (click)="goToLink(elementos.archivo)"
+        >
+          Ver
+        </button>
+      </td>
+    </tr>
+  </ng-template>
+</p-table>
