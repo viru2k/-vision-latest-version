@@ -1949,18 +1949,18 @@ Buttons
   -o-transition: all .5s;
   transition: all .5s; }
 
-.btn-rounded {
+.ed {
   border-radius: 60px;
   padding: 7px 18px; }
-  .btn-rounded.btn-lg {
+  .ed.btn-lg {
     padding: .75rem 1.5rem; }
-  .btn-rounded.btn-sm {
+  .ed.btn-sm {
     padding: .25rem .5rem;
     font-size: 12px; }
-  .btn-rounded.btn-xs {
+  .ed.btn-xs {
     padding: .25rem .5rem;
     font-size: 10px; }
-  .btn-rounded.btn-md {
+  .ed.btn-md {
     padding: 12px 35px;
     font-size: 16px; }
 

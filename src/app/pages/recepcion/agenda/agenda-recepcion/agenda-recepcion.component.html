@@ -278,9 +278,11 @@
         "
         style="width: 5%"
       >
-        <a class="my-hover" (click)="verDetalle(agendaTurno)">{{
-          agendaTurno.operacion_cobro_id
-        }}</a>
+        <b>
+          <a class="my-hover" (click)="verDetalle(agendaTurno)">{{
+            agendaTurno.operacion_cobro_id
+          }}</a>
+        </b>
       </td>
       <td
         [ngClass]="

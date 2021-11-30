@@ -88,15 +88,7 @@
 .btn-danger  { @include btn-styles($danger-color, $danger-states-color); }
 .btn-neutral { @include btn-styles($white-color, $white-color); }
 
-.btn-round{
-    border-width: $border-thin;
-    border-radius: $btn-round-radius !important;
-    padding: $padding-btn-vertical  $padding-round-horizontal;
 
-    &.btn-simple{
-        padding: $padding-btn-vertical - 1  $padding-round-horizontal - 1;
-    }
-}
 .btn-simple{
     border: $border;
     border-color: $default-color;

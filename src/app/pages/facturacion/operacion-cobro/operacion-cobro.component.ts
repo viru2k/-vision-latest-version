@@ -124,11 +124,10 @@ export class OperacionCobroComponent implements OnInit {
     private router: Router
   ) {
     if (this.router.getCurrentNavigation().extras.state != undefined) {
-      // TODO - REFACTOR
-      /*   console.log(this.router.getCurrentNavigation().extras.state.paciente);
+      console.log(this.router.getCurrentNavigation().extras.state['paciente']);
       this.popItemAgendaInicio =
-        this.router.getCurrentNavigation().extras.state.paciente;
-      this.esInvocado = true; */
+        this.router.getCurrentNavigation().extras.state['paciente'];
+      this.esInvocado = true;
     }
     this.cols = [
       { field: 'pmo_descripcion', header: 'Practica', width: '55%' },

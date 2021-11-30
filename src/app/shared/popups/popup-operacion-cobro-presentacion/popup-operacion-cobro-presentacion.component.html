@@ -61,8 +61,39 @@
               >
             </ng-template>
           </p-calendar>
+          <button
+            class="btn btn-primary btn-sm float-right mr-2 pr-1 pt-1"
+            (click)="loadRegistro()"
+          >
+            Buscar Registros
+          </button>
         </div>
       </form>
+    </div>
+  </div>
+
+  <div class="row" style="text-align: left">
+    <div class="pr-2 pl-2"></div>
+    <div class="pr-2 pl-2">
+      <button class="btn btn-info btn-sm" (click)="generarPdfListado('todos')">
+        Imprimir resumen
+      </button>
+    </div>
+    <div>
+      <button
+        class="ml-2 btn btn btn-info btn-sm float-right"
+        (click)="generarPreFactura()"
+      >
+        Imprimir pre-factura
+      </button>
+    </div>
+    <div>
+      <button
+        class="btn btn-success btn-sm"
+        (click)="generarPdfListado('medico')"
+      >
+        Imprimir resumen por médico
+      </button>
     </div>
   </div>
 
@@ -84,45 +115,6 @@
     [showLoader]="true"
     loadingIcon="fas fa-spinner fa-2x icon-color-green"
   >
-    <ng-template pTemplate="caption">
-      <div class="row">
-        <div class="col-md-7 row" style="text-align: left">
-          <div class="pr-2 pl-2">
-            <button
-              class="btn btn-primary btn-sm float-right mr-2"
-              (click)="loadRegistro()"
-            >
-              Buscar Registros
-            </button>
-          </div>
-          <div class="pr-2 pl-2">
-            <button
-              class="btn btn-info btn-sm"
-              (click)="generarPdfListado('todos')"
-            >
-              Imprimir resumen
-            </button>
-          </div>
-          <div>
-            <button
-              class="ml-2 btn btn btn-info btn-sm float-right"
-              (click)="generarPreFactura()"
-            >
-              Imprimir pre-factura
-            </button>
-          </div>
-          <div>
-            <button
-              class="btn btn-success btn-sm"
-              (click)="generarPdfListado('medico')"
-            >
-              Imprimir resumen por médico
-            </button>
-          </div>
-        </div>
-      </div>
-    </ng-template>
-
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th

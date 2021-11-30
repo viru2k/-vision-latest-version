@@ -132,13 +132,14 @@ export class TurnoComponent implements OnInit {
       '',
       ''
     );
+
+    // TODO -CHECK IF IS OK
     if (this.router.getCurrentNavigation().extras.state != undefined) {
-      //TODO REFACTOR
-      /*       this.buscarPacienteByDni(
-        this.router.getCurrentNavigation().extras.state.paciente.paciente_dni,
-        this.router.getCurrentNavigation().extras.state.paciente
-        
-      ); */
+      this.buscarPacienteByDni(
+        this.router.getCurrentNavigation().extras.state['paciente']
+          .paciente_dni,
+        this.router.getCurrentNavigation().extras.state['paciente']
+      );
     }
     this.es = calendarioIdioma;
     this.colsAgenda = [
@@ -282,7 +283,8 @@ export class TurnoComponent implements OnInit {
       this.miServicoPaciente.getItems('paciente.dni', dni).subscribe(
         (resp) => {
           console.log(resp);
-          //    this.elementoPacienteInicio = resp[0];//this.router.getCurrentNavigation().extras.state.paciente;
+          //    this.elementoPacienteInicio = resp[0];//
+          this.router.getCurrentNavigation().extras.state['paciente'];
 
           this.popItemPaciente = resp[0];
           this.formPaciente.patchValue(resp[0]);

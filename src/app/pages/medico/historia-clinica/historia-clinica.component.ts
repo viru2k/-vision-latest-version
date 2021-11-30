@@ -72,10 +72,10 @@ export class HistoriaClinicaComponent implements OnInit {
     public dialogService: DialogService
   ) {
     if (this.router.getCurrentNavigation().extras.state != undefined) {
-      // TODO - REFACTOR
-      //this.paciente = this.router.getCurrentNavigation().extras.state.paciente;
+      this.paciente =
+        this.router.getCurrentNavigation().extras.state['paciente'];
       console.log(this.paciente);
-      //this.formPaciente.patchValue(this.popItemPaciente);
+      this.formPaciente.patchValue(this.popItemPaciente);
     }
 
     this.listarecetas = [

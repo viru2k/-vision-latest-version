@@ -16,7 +16,7 @@
 
       <div class="d-flex justify-content-between">
         <button
-          class="btn btn-primary btn-sm btn-round"
+          class="btn btn-primary btn-sm"
           type="button"
           (click)="buscarHistoriaUsuario()"
           pInputText
@@ -199,9 +199,11 @@
           "
           style="width: 5%"
         >
-          <a class="my-hover" (click)="verDetalle(agendaTurno)">{{
-            agendaTurno.operacion_cobro_id
-          }}</a>
+          <b>
+            <a class="my-hover" (click)="verDetalle(agendaTurno)">{{
+              agendaTurno.operacion_cobro_id
+            }}</a>
+          </b>
         </td>
         <td
           [ngClass]="

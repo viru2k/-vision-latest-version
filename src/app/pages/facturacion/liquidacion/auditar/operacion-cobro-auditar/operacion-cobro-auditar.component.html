@@ -11,7 +11,7 @@
   <div class="row m-2" role="toolbar" aria-label="Toolbar with button groups">
     <div class="input-group input-group-sm">
       <form [formGroup]="DateForm">
-        <div class="btn-group mr-1" role="group">
+        <div class="d-flex align-items-center btn-group mr-1" role="group">
           <span class="pr-1 pt-1"><h6>Desde:</h6></span>
           <p-calendar
             [inputStyle]="{ height: '29.1px' }"
@@ -69,20 +69,19 @@
               >
             </ng-template>
           </p-calendar>
-          <div class="ml-2 row">
-            <div>
-              <button class="btn btn-success btn-sm" (click)="loadRegistro()">
-                Buscar Registros
-              </button>
-            </div>
-            <div class="ml-2">
-              <button
-                class="btn btn-info btn-sm float-right pr-2"
-                (click)="afectarRegistros()"
-              >
-                Auditar registros
-              </button>
-            </div>
+
+          <div>
+            <button class="btn btn-success btn-sm" (click)="loadRegistro()">
+              Buscar Registros
+            </button>
+          </div>
+          <div class="ml-2">
+            <button
+              class="btn btn-info btn-sm float-right pr-2"
+              (click)="afectarRegistros()"
+            >
+              Auditar registros
+            </button>
           </div>
         </div>
       </form>
@@ -107,61 +106,60 @@
     [showLoader]="true"
     loadingIcon="fas fa-spinner fa-2x icon-color-green"
   >
-    <ng-template pTemplate="caption">
-      <div class="row">
-        <div class="col-md-12 row" style="text-align: left">
-          <div class="pr-2 pl-2">
-            <button
-              class="btn btn-info btn-sm"
-              (click)="generarPdfListado('todos')"
-            >
-              Imprimir resumen
-            </button>
-          </div>
-          <div>
-            <button
-              class="btn btn-success btn-sm"
-              (click)="generarPdfListado('medico')"
-            >
-              Imprimir resumen por médico
-            </button>
-          </div>
-          <div>
-            <button
-              class="ml-2 btn btn btn-info btn-sm float-right"
-              (click)="generarPreFactura()"
-            >
-              Imprimir pre-factura
-            </button>
-          </div>
-          <div>
-            <button
-              class="ml-2 btn btn-primary btn-sm float-right"
-              (click)="buscarPractica()"
-            >
-              Buscar otros registros
-            </button>
-          </div>
-          <div>
-            <button
-              class="ml-2 btn btn-primary btn-sm float-right"
-              (click)="buscarPracticaPaciente()"
-            >
-              Buscar registros por paciente
-            </button>
-          </div>
-          <div>
-            <button
-              class="ml-2 btn btn-excel btn-sm float-right"
-              (click)="exportarExcel()"
-            >
-              <i class="fa fa-file-excel-o mr-1" aria-hidden="true"> </i>
-              Exportar a excel
-            </button>
-          </div>
+    <div class="row">
+      <div class="col-md-12 row" style="text-align: left">
+        <div class="pr-2 pl-2">
+          <button
+            class="btn btn-info btn-sm"
+            (click)="generarPdfListado('todos')"
+          >
+            Imprimir resumen
+          </button>
+        </div>
+        <div>
+          <button
+            class="btn btn-success btn-sm"
+            (click)="generarPdfListado('medico')"
+          >
+            Imprimir resumen por médico
+          </button>
+        </div>
+        <div>
+          <button
+            class="ml-2 btn btn btn-info btn-sm float-right"
+            (click)="generarPreFactura()"
+          >
+            Imprimir pre-factura
+          </button>
+        </div>
+        <div>
+          <button
+            class="ml-2 btn btn-primary btn-sm float-right"
+            (click)="buscarPractica()"
+          >
+            Buscar otros registros
+          </button>
+        </div>
+        <div>
+          <button
+            class="ml-2 btn btn-primary btn-sm float-right"
+            (click)="buscarPracticaPaciente()"
+          >
+            Buscar registros por paciente
+          </button>
+        </div>
+        <div>
+          <button
+            class="ml-2 btn btn-excel btn-sm float-right"
+            (click)="exportarExcel()"
+          >
+            <i class="fa fa-file-excel-o mr-1" aria-hidden="true"> </i>
+            Exportar a excel
+          </button>
         </div>
       </div>
-    </ng-template>
+    </div>
+
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th

@@ -57,10 +57,11 @@ export class HistoriaClinicaVisualizarComponent implements OnInit {
   ) {
     if (this.router.getCurrentNavigation().extras.state != undefined) {
       // si es llamado desde la agenda del paciente busco los datos
-      // TODO -REFACTOR
-      //this.paciente = this.router.getCurrentNavigation().extras.state.paciente;
+
+      this.paciente =
+        this.router.getCurrentNavigation().extras.state['paciente'];
       console.log(this.paciente);
-      //this.formPaciente.patchValue(this.popItemPaciente);
+      this.formPaciente.patchValue(this.popItemPaciente);
     }
 
     this.cols = [

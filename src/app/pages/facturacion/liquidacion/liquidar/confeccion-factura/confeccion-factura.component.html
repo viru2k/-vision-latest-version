@@ -14,6 +14,13 @@
     <button class="btn btn-info btn-sm pr-2" (click)="verDetalleTodos()">
       Ver detalle seleccionados
     </button>
+    <button
+      class="ml-2 btn btn-excel btn-sm float-right"
+      (click)="exportarExcel()"
+    >
+      <i class="fa fa-file-excel-o mr-1" aria-hidden="true"> </i> Exportar a
+      excel
+    </button>
   </div>
 </div>
 
@@ -34,20 +41,6 @@
     [showLoader]="true"
     loadingIcon="fas fa-spinner fa-2x icon-color-green"
   >
-    <ng-template pTemplate="caption">
-      <div class="d-flex justify-content-end">
-        <div>
-          <button
-            class="ml-2 btn btn-excel btn-sm float-right"
-            (click)="exportarExcel()"
-          >
-            <i class="fa fa-file-excel-o mr-1" aria-hidden="true"> </i> Exportar
-            a excel
-          </button>
-        </div>
-      </div>
-    </ng-template>
-
     <ng-template pTemplate="header" let-columns>
       <tr>
         <th

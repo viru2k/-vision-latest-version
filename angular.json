@@ -38,7 +38,7 @@
               "./node_modules/hover.css/css/hover-min.css",
               "./node_modules/font-awesome/scss/font-awesome.scss",
               "./node_modules/primeicons/primeicons.css",
-              "./node_modules/primeng-lts/resources/themes/bootstrap4-dark-blue/theme.css",
+              "./node_modules/primeng-lts/resources/themes/rhea/theme.css",
               "./node_modules/primeng-lts/resources/primeng.min.css",                       
               "./node_modules/fullcalendar/main.min.css",
               "./src/styles.scss",              
