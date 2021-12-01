@@ -19,7 +19,7 @@
                 (onSelect)="actualizarFechaDesde($event)"
                 [locale]="es"
                 dateFormat="dd/mm/yy"
-                [readonlyInput]="true"
+                [readonlyInput]="false"
               >
                 <ng-template pTemplate="date" let-date>
                   <span
@@ -43,7 +43,7 @@
                 (onSelect)="actualizarFechaHasta($event)"
                 [locale]="es"
                 dateFormat="dd/mm/yy"
-                [readonlyInput]="true"
+                [readonlyInput]="false"
               >
                 <ng-template pTemplate="date" let-date>
                   <span

@@ -1,3 +1,4 @@
+import { SweetAlertService } from './../../../services/sweetalert.service';
 import { MessageService } from 'primeng-lts/api';
 import {
   DialogService,
@@ -13,6 +14,7 @@ import { PopupObrasocialComponent } from './../../../pages/mantenimiento/popup/p
 import { calendarioIdioma } from './../../../config/config';
 import { PacienteService } from '../../../services/paciente.service';
 import { Paciente } from './../../../models/paciente.model';
+import { exhaustMap } from 'rxjs';
 
 @Component({
   selector: 'app-popup-paciente-consulta',
@@ -30,6 +32,7 @@ export class PopupPacienteConsultaComponent implements OnInit {
 
   constructor(
     public pacienteService: PacienteService,
+    private sweetAlertService: SweetAlertService,
     public config: DynamicDialogConfig,
     private messageService: MessageService,
     public dialogService: DialogService,
@@ -44,6 +47,7 @@ export class PopupPacienteConsultaComponent implements OnInit {
       nombre: new FormControl('', Validators.required),
       apellido: new FormControl('', Validators.required),
       dni: new FormControl('', [Validators.required, Validators.maxLength(8)]),
+      dniNew: new FormControl('', [Validators.maxLength(8)]),
       domicilio: new FormControl('San Juan', Validators.required),
       sexo: new FormControl('M', Validators.required),
       email: new FormControl('sin_correo@delavision.com.ar', [
@@ -69,6 +73,9 @@ export class PopupPacienteConsultaComponent implements OnInit {
     });
 
     /*** CORRECCION PARA LAS VENTANAS EMERGENTES QUE MANEJAN FECHA EN INPUT */
+    if (this.isAllowedEditDni() === 0) {
+      this.updateDataForm.controls['dni'].disable();
+    }
     if (this.config.data.fecha_nacimiento) {
       let _fecha: Date = new Date(this.config.data.fecha_nacimiento);
       let dateFix = new Date(
@@ -81,6 +88,30 @@ export class PopupPacienteConsultaComponent implements OnInit {
     console.log(this.config.data);
     this.paciente_id = this.config.data.paciente_id;
     this.buscarPaciente();
+  }
+
+  isAllowedEditDni(): number {
+    let userData = JSON.parse(localStorage.getItem('userData') || '{}');
+    let accessList: any[] = userData.access_list;
+    let hasAccess = accessList.filter(
+      (modulo) => modulo.modulo_nombre == 'facturacion_control'
+    );
+    return hasAccess.length;
+  }
+
+  actualizarDni(): void {
+    this.pacienteService
+      .ActualizarDni(
+        this.updateDataForm.value.dni,
+        this.updateDataForm.value.dniNew
+      )
+      .subscribe((resp) => {
+        console.log(resp);
+        this.sweetAlertService.successAlert(
+          'Datos guardados',
+          'El DNI se actualizo correctamente'
+        );
+      });
   }
 
   buscarObraSocial() {

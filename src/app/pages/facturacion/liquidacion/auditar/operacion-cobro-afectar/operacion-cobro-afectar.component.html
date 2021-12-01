@@ -22,8 +22,8 @@
               (onSelect)="actualizarFechaDesde($event)"
               [locale]="es"
               dateFormat="dd/mm/yy"
-              [readonlyInput]="true"
-              [showButtonBar]="true"
+              [readonlyInput]="false"
+              [showButtonBar]="false"
               [monthNavigator]="true"
               [yearNavigator]="true"
               yearRange="1950:2100"
@@ -50,8 +50,8 @@
               (onSelect)="actualizarFechaHasta($event)"
               [locale]="es"
               dateFormat="dd/mm/yy"
-              [readonlyInput]="true"
-              [showButtonBar]="true"
+              [readonlyInput]="false"
+              [showButtonBar]="false"
               [monthNavigator]="true"
               [yearNavigator]="true"
               yearRange="1950:2100"
@@ -90,7 +90,7 @@
             (onSelect)="actualizarFechaPeriodo($event)"
             [locale]="es"
             dateFormat="dd/mm/yy"
-            [readonlyInput]="true"
+            [readonlyInput]="false"
             [monthNavigator]="true"
             [yearNavigator]="true"
           >
@@ -319,6 +319,15 @@
             pInputText
             type="text"
           />
+          <p-multiSelect
+          [style]="{ height: '28px', width: '100%', 'font-size': '10px' }"
+          [options]="_barra_afiliado"
+          appendTo="body"
+          defaultLabel="Filtrar"
+          [showHeader]="false"
+          *ngIf="col.field == 'barra_afiliado'"
+          (onChange)="dt.filter($event.value, col.field, 'in')"
+        ></p-multiSelect>
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
@@ -443,6 +452,8 @@
         <td style="width: 10%">{{ elementos.apellido }}</td>
         <td style="width: 10%">{{ elementos.nombre }}</td>
         <td style="font-size: 10px; width: 7%">{{ elementos.dni }}</td>
+        <td style="font-size: 10px; width: 5%">{{ elementos.barra_afiliado }}</td>
+        
         <td style="font-size: 10px; width: 4%">
           {{ elementos.gravado_adherente }}
         </td>

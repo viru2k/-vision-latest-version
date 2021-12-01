@@ -4,6 +4,9 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router, ActivatedRoute } from '@angular/router';
 import { DatePipe } from '@angular/common';
 
+// Common
+
+import packageInfo from '../../../../package.json';
 // PrimeNg
 import { MenuItem, MessageService } from 'primeng-lts/api';
 import { OverlayPanel } from 'primeng-lts/overlaypanel';
@@ -75,7 +78,9 @@ export class NavbarComponent implements OnInit {
   chats;
   lista_usuarios_chat: any[] = [];
   mensaje = 0;
-
+  public appVersion;
+  currentVersion: any;
+  currentDate: any;
   constructor(
     private notificacionesService: NotificacionesService,
     private messageService: MessageService,
@@ -87,7 +92,11 @@ export class NavbarComponent implements OnInit {
     private miServico: UserService,
     private chatService: ChatService,
     public sweetAlertService: SweetAlertService
-  ) {}
+  ) {
+    // Define version and updated Dated
+    this.currentVersion = { version: packageInfo.version };
+    this.currentDate = { updateddate: packageInfo.updateddate };
+  }
   navbarOpen = false;
 
   toggleNavbar() {
@@ -178,6 +187,7 @@ export class NavbarComponent implements OnInit {
       this.asignarModulos(userData['access_list']);
       //  this.getNotificacionesByUsuario();
       /*** busco notificaciones si esta logueado*/
+      // TODO -REFACTOR
       /* let timer = Observable.timer(180000,180000);//180000 -- 3 minutos inicia y en 3 minutos vuelve a llamar
      timer.subscribe(t=> {
        console.log('listando notificaciones');
@@ -827,48 +837,83 @@ export class NavbarComponent implements OnInit {
               { label: 'Moneda', routerLink: 'movimientos/caja/tipo/moneda' },
             ],
           },
+          {
+            label: 'Perfiles',
+            visible: !this.facturacion_control,
+            items: [
+              {
+                label: 'Paciente',
+                visible: !this.facturacion_control,
+                routerLink: 'paciente',
+              },
+              {
+                label: 'Proveedor',
+                visible: !this.facturacion_control,
+                routerLink: 'proveedor',
+              },
+              {
+                label: 'Medicos',
+                visible: !this.facturacion_control,
+                routerLink: 'medico',
+              },
+              {
+                label: 'Usuario',
+                visible: !this.administrador,
+                routerLink: 'usuario',
+              },
+            ],
+          },
+          {
+            label: 'Insumos',
+            visible: !this.facturacion_control,
+            items: [
+              {
+                label: 'Insumos',
+                visible: !this.mantenimiento_stock_insumo,
+                routerLink: 'insumo/insumo',
+              },
+              {
+                label: 'Lentes',
+                visible: !this.mantenimiento_stock_insumo,
+                routerLink: 'insumo/lente',
+              },
+            ],
+          },
 
           {
-            label: 'Paciente',
-            visible: !this.facturacion_control,
-            routerLink: 'paciente',
-          },
-
-          {
-            label: 'Proveedor',
-            visible: !this.facturacion_control,
-            routerLink: 'proveedor',
-          },
-          {
-            label: 'Medicos',
-            visible: !this.facturacion_control,
-            routerLink: 'medico',
-          },
-          {
-            label: 'Usuario',
-            visible: !this.administrador,
-            routerLink: 'usuario',
-          },
-          {
-            label: 'Facturación articulo',
+            label: 'Facturación articulos',
             visible: !this.administrador,
             routerLink: 'factura/articulo',
           },
           {
-            label: 'Stock',
+            label: 'Stock de lentes',
+            visible: !this.mantenimiento_stock_insumo,
+            routerLink: 'stock/lente/stock',
+          },
+          {
+            label: 'Parametros',
+            visible: !this.facturacion_control,
             items: [
               {
-                label: 'Lentes',
-                visible: !this.mantenimiento_stock_lente,
-                items: [
-                  { label: 'Stock de lentes', routerLink: 'stock/lente/stock' },
-                ],
+                label: 'Métodos de pago',
+                visible: !this.mantenimiento_stock_insumo,
+                routerLink: 'parametros/insumo',
               },
               {
-                label: 'Insumos',
+                label: 'Estudios',
                 visible: !this.mantenimiento_stock_insumo,
-                items: [{ label: 'Cargar insumo', routerLink: 'stock/insumo' }],
+                routerLink: 'parametros/insumo',
               },
+              {
+                label: 'Recetas',
+                visible: !this.mantenimiento_stock_insumo,
+                routerLink: 'parametros/receta',
+              },
+              /*    {
+                label: 'Estudios',
+                visible: !this.mantenimiento_stock_insumo,
+                routerLink: 'parametros/estudio'
+              }, */
             ],
           },
         ],

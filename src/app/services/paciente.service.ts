@@ -1,49 +1,63 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-
 import { URL_SERVICIOS, PARAMS } from '../config/config';
-import {Paciente} from '../models/paciente.model';
+import { Paciente } from '../models/paciente.model';
 /*
 @Injectable({
   providedIn: 'root'
 })*/
 @Injectable()
 export class PacienteService {
+  private url: string = URL_SERVICIOS + 'paciente';
 
+  constructor(public http: HttpClient) {}
 
+  getItem(id: string) {
+    return this.http.get<Paciente>(this.url + '/' + id);
+  }
 
-    private url:string  = URL_SERVICIOS + 'paciente';
+  getItems(consulta: string, valor: string) {
+    return this.http.get<Paciente[]>(
+      this.url + '/' + 'by/consulta?consulta=' + consulta + '&valor=' + valor
+    );
+  }
 
-      constructor(public http: HttpClient) { }
+  putItem(paciente: Paciente, id: string) {
+    //   console.log(this.url+"/"+id);
+    console.log(paciente);
+    return this.http.put<Paciente>(this.url + '/' + id, paciente);
+  }
 
-      getItem(id:string){
-        return this.http.get<Paciente>(this.url+"/"+id);
-      }
+  postItem(paciente: Paciente) {
+    console.log(paciente);
+    return this.http.post<Paciente>(this.url, paciente);
+  }
 
-   
+  getPacienteObraSocialTodas(consulta: string, valor: string, id: string) {
+    return this.http.get<Paciente>(
+      this.url +
+        '/by/consulta?consulta=' +
+        consulta +
+        '&valor=' +
+        valor +
+        '&id=' +
+        id
+    );
+  }
 
-    getItems(consulta:string, valor:string){
-      return this.http.get<Paciente[]>(this.url+"/"+"by/consulta?consulta="+consulta+"&valor="+valor);
-      }
-
-    putItem(paciente:Paciente, id:string){
-   //   console.log(this.url+"/"+id);
-      console.log(paciente); 
-      return this.http.put<Paciente>(this.url+"/"+id,paciente);
-    }
-
-    postItem(paciente:Paciente){
-      console.log(paciente); 
-      return this.http.post<Paciente>(this.url, paciente);
-    }
-
-    getPacienteObraSocialTodas(consulta:string, valor:string, id:string){
-      return this.http.get<Paciente>(this.url+"/by/consulta?consulta="+consulta+"&valor="+valor+"&id="+id);
-      }
-
-    getPacienteObraSocialHabilitada(consulta:string, valor:string, id:string){
-      return this.http.get<Paciente>(this.url+"/by/consulta?consulta="+consulta+"&valor="+valor+"&id="+id);
-      }
-
+  getPacienteObraSocialHabilitada(consulta: string, valor: string, id: string) {
+    return this.http.get<Paciente>(
+      this.url +
+        '/by/consulta?consulta=' +
+        consulta +
+        '&valor=' +
+        valor +
+        '&id=' +
+        id
+    );
+  }
+  ActualizarDni(dniOld: string, dniNew: string) {
+    return this.http.put<Paciente>(this.url + '/dni' + dniOld, dniNew);
+  }
 }

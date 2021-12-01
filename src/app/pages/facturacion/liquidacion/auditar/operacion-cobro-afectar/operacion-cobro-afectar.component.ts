@@ -95,6 +95,7 @@ export class OperacionCobroAfectarComponent implements OnInit {
   _codigo: any[] = [];
   _medico_nombre: any[] = [];
   _forma_pago: any[] = [];
+  _barra_afiliado: any[] = [];
 
   constructor(
     private miServicio: PracticaService,
@@ -127,6 +128,7 @@ export class OperacionCobroAfectarComponent implements OnInit {
       { field: 'apellido', header: 'Apellido', width: '10%' },
       { field: 'nombre', header: 'Nombre', width: '10%' },
       { field: 'dni', header: 'DNI/afil.', width: '7%' },
+      { field: 'barra_afiliado', header: 'Barra', width: '5%' },
       { field: 'gravado_adherente', header: 'G/A', width: '4%' },
       { field: 'obra_social_nombre', header: 'O.S', width: '15%' },
       { field: 'descripcion', header: 'Descrpición', width: '20%' },
@@ -2108,6 +2110,7 @@ export class OperacionCobroAfectarComponent implements OnInit {
     this._medico_nombre = [];
     this._obra_social_nombre = [];
     this._forma_pago = [];
+    this._barra_afiliado = [];
 
     resp.forEach((element) => {
       this._codigo.push(element['codigo']);
@@ -2115,6 +2118,7 @@ export class OperacionCobroAfectarComponent implements OnInit {
       this._medico_nombre.push(element['medico_nombre']);
       this._obra_social_nombre.push(element['obra_social_nombre']);
       this._forma_pago.push(element['forma_pago']);
+      this._barra_afiliado.push(element['barra_afiliado']);
     });
 
     // ELIMINO DUPLICADOS
@@ -2125,5 +2129,6 @@ export class OperacionCobroAfectarComponent implements OnInit {
       this._obra_social_nombre
     );
     this._forma_pago = this.filter.filterArray(this._forma_pago);
+    this._barra_afiliado = this.filter.filterArray(this._barra_afiliado);
   }
 }

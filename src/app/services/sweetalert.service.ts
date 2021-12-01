@@ -42,4 +42,18 @@ export class SweetAlertService {
       allowOutsideClick: false,
     });
   }
+
+  public successAlert(textLine?, textMessage?, textFooter?, isShowCancel?) {
+    return swal({
+      title: textLine || 'Esta seguro?',
+      text: textMessage || '',
+      footer: textFooter || '',
+      type: 'success',
+      showCancelButton: isShowCancel,
+      cancelButtonText: 'No',
+      confirmButtonText: isShowCancel ? 'SI' : 'Ok',
+      reverseButtons: true,
+      allowOutsideClick: false,
+    });
+  }
 }

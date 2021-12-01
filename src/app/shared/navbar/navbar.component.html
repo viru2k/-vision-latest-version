@@ -1,23 +1,25 @@
 <p-menubar [model]="general" *ngIf="loggedIn">
   <div class="flexbox d-flex align-items-center mt-2">
-    <!-- TODO REMOVE -->
-    <!--   <app-chat-notificator class="mr-3"></app-chat-notificator> -->
-    <label class="texto-monserrat icon-color-user-setting mr-2"
-      >PUESTO : {{ puesto | uppercase }}
-    </label>
+    <app-chat-notificator class="mr-3"></app-chat-notificator>
 
-    <a
-      (click)="accion($event, op)"
+    <div class="my-hover mr-2 ml-2" (click)="accion($event, op)">
+      <label class="mr-2 pointer"
+        >PUESTO : {{ puesto | uppercase }}
+        <i class="fas fa-user-circle fa-lg"></i> {{ username | uppercase }}
+      </label>
+    </div>
+
+    <!--    <a
+     
       class="
         mr-2
         ml-2
         btn btn-link btn-success btn-lg
-        texto-monserrat
-        icon-color-user-setting
+
       "
     >
-      <i class="fas fa-user-circle fa-lg"></i> {{ username | uppercase }}</a
-    >
+    </a
+    > -->
     <p-overlayPanel
       #op
       [showTransitionOptions]="'400ms'"
@@ -58,8 +60,16 @@
   </div>
 </p-menubar>
 
-<div class="mr-2 ml-2 mb-1" *ngIf="loggedIn">
+<div class="mr-2 ml-2 mb-1 content" *ngIf="loggedIn">
   <router-outlet></router-outlet>
+</div>
+<div class="d-flex align-items-end footer">
+  <footer>
+    <label class="m-2"
+      >Version: {{ this.currentVersion.version }} - Actualizado:
+      {{ this.currentDate.updateddate }}</label
+    >
+  </footer>
 </div>
 
 <div class="wrapper fadeInDown" *ngIf="!loggedIn">
