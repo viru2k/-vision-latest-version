@@ -258,10 +258,7 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
   LEJOS_OI_E_INT: number;
 
   actualizarLEJOS_OD_E() {
-    /*     this.LEJOS_OD_E_INT = Number(this.dataForm.value.LEJOS_OD_E);
-    this.dataForm.patchValue({
-      LEJOS_OD_E: this.cp.transform(this.dataForm.value.LEJOS_OD_E, '1.2-2'),
-    }); */
+    this.LEJOS_OD_E_INT = Number(this.dataForm.value.LEJOS_OD_E);
 
     this.dataForm.patchValue({
       LEJOS_OD_E: this.regex.onInputFormat(this.dataForm.value.LEJOS_OD_E),
@@ -269,10 +266,8 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
   }
 
   actualizarLEJOS_OI_E() {
-    /*     this.LEJOS_OI_E_INT = Number(this.dataForm.value.LEJOS_OI_E);
-    this.dataForm.patchValue({
-      LEJOS_OI_E: this.cp.transform(this.dataForm.value.LEJOS_OI_E, '1.2-2'),
-    }); */
+    this.LEJOS_OI_E_INT = Number(this.dataForm.value.LEJOS_OI_E);
+
     this.dataForm.patchValue({
       LEJOS_OI_E: this.regex.onInputFormat(this.dataForm.value.LEJOS_OI_E),
     });
@@ -351,31 +346,16 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     /** OD */
     if (this.dataForm.value.LEJOS_OD_E) {
       if (this.valor_agregar != 0) {
-        console.log(
-          'suma',
-          Number(this.dataForm.value.LEJOS_OD_E) + this.dataForm.value.agregar
-        );
+        const _CERCA_OD_E =
+          Number(this.LEJOS_OD_E_INT) + this.dataForm.value.agregar;
 
         this.dataForm.patchValue({
-          // CERCA_OD_E: Number(this.LEJOS_OD_E_INT) + this.dataForm.value.agregar,
-          CERCA_OD_E:
-            Number(this.dataForm.value.LEJOS_OD_E) +
-            this.dataForm.value.agregar,
+          CERCA_OD_E: this.regex.onInputFormat(_CERCA_OD_E.toString()),
         });
-
-        console.log(this.dataForm.value.CERCA_OD_E);
-
-        /*      this.dataForm.patchValue({
-          CERCA_OD_E: this.cp.transform(
-            this.dataForm.value.CERCA_OD_E,
-            '1.2-2'
-          ),
-        }); */
       } else {
         this.dataForm.patchValue({
           CERCA_OD_E: Number(this.LEJOS_OD_E_INT) + this.dataForm.value.agregar,
         });
-        // this.dataForm.patchValue({CERCA_OD_E: ''});
       }
     } else {
       this.dataForm.patchValue({ CERCA_OD_E: this.dataForm.value.agregar });
@@ -384,19 +364,13 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     /**OI */
     if (this.dataForm.value.LEJOS_OI_E) {
       if (this.valor_agregar != 0) {
+        const _CERCA_OI_E =
+          Number(this.LEJOS_OI_E_INT) + this.dataForm.value.agregar;
+
         this.dataForm.patchValue({
-          CERCA_OI_E:
-            Number(this.dataForm.value.LEJOS_OI_E) +
-            this.dataForm.value.agregar,
+          CERCA_OI_E: this.regex.onInputFormat(_CERCA_OI_E.toString()),
         });
-        /*  this.dataForm.patchValue({
-          CERCA_OI_E: this.cp.transform(
-            this.dataForm.value.CERCA_OI_E,
-            '1.2-2'
-          ),
-        }); */
       } else {
-        //this.dataForm.patchValue({CERCA_OI_E: ''});
         this.dataForm.patchValue({
           CERCA_OI_E: Number(this.LEJOS_OI_E_INT) + this.dataForm.value.agregar,
         });
@@ -412,14 +386,10 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     }
 
     if (this.valor_agregar == 0) {
-      /*  this.dataForm.patchValue({CERCA_OI_E: this.dataForm.value.LEJOS_OI_E });
-      }else{ */
       this.dataForm.patchValue({ CERCA_OI_E: '' });
     }
 
     if (this.valor_agregar == 0) {
-      /*  this.dataForm.patchValue({CERCA_OD_E: this.dataForm.value.LEJOS_OD_E });
-        }else{ */
       this.dataForm.patchValue({ CERCA_OD_E: '' });
     }
 
@@ -1067,5 +1037,31 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
         footer: motivo,
       });
     }
+  }
+
+  onInputFormat(value: any) {
+    let newVal = value.replace('/^(d{0,2})/', '');
+    //borra espacio
+    var hasComma = newVal.indexOf(',');
+    var hasDot = newVal.indexOf('.');
+
+    if (newVal.length === 0) {
+      newVal = '';
+    }
+    if (hasComma !== -1) {
+      newVal = newVal.replace(',', '.');
+    }
+
+    newVal = this.cp.transform(newVal, '1.2-2');
+    if (newVal !== '0') {
+      var isNegative = newVal.indexOf('-');
+      if (isNegative != -1) {
+        newVal = newVal.replace(/^(\d{0,2})/, '$1');
+      } else {
+        newVal = newVal.replace(/^(\d{0,2})/, '+$1');
+      }
+    }
+
+    return newVal;
   }
 }
