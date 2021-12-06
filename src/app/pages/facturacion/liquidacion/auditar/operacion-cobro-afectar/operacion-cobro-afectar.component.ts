@@ -1,3 +1,4 @@
+import { ParametroService } from './../../../../../services/parametro.service';
 import { PopupOperacionCobroRegistroBuscarTodosComponent } from './../../../../../shared/popups/popup-operacion-cobro-registro-buscar-todos/popup-operacion-cobro-registro-buscar-todos.component';
 import { PopupOperacionCobroRegistroBuscarComponent } from './../../../../../shared/popups/popup-operacion-cobro-registro-buscar/popup-operacion-cobro-registro-buscar.component';
 import { PopupOperacionCobroEditarComponent } from './../../../../../shared/popups/popup-operacion-cobro-editar/popup-operacion-cobro-editar.component';
@@ -34,7 +35,7 @@ import { PracticaService } from 'src/app/services/practica.service';
 
 import { formatDate, CurrencyPipe, DecimalPipe } from '@angular/common';
 import { OverlayPanelModule, OverlayPanel } from 'primeng-lts/overlaypanel';
-import { config } from 'rxjs';
+import { config, take } from 'rxjs';
 import { Liquidacion } from '../../../../../models/liquidacion.model';
 
 import { MedicoObraSocial } from '../../../../../models/medico-obrasocial.model';
@@ -98,6 +99,7 @@ export class OperacionCobroAfectarComponent implements OnInit {
   _barra_afiliado: any[] = [];
 
   constructor(
+    private parametroService: ParametroService,
     private miServicio: PracticaService,
     private messageService: MessageService,
     private practicaDistribucionService: PracticaDistribucionService,
@@ -106,14 +108,14 @@ export class OperacionCobroAfectarComponent implements OnInit {
     private dp: DecimalPipe,
     private filter: Filter
   ) {
-    this.formasPago = [
+    /*  this.formasPago = [
       { label: 'TRANSFERENCIA', value: 'TRANSFERENCIA' },
       { label: 'EFECTIVO', value: 'EFECTIVO' },
       { label: 'TARJETA - CREDITO', value: 'TARJETA - CREDITO' },
       { label: 'TARJETA - DEBITO', value: 'TARJETA - DEBITO' },
       { label: 'CHEQUE', value: 'CHEQUE' },
       { label: 'VARIOS', value: 'VARIOS' },
-    ];
+    ]; */
 
     this.nivel = [
       { label: '1', value: 1 },
@@ -174,6 +176,7 @@ export class OperacionCobroAfectarComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.loadParametro();
     this.es = calendarioIdioma;
     this.fechaDesde = new Date();
     this.fechaHasta = new Date();
@@ -222,6 +225,17 @@ export class OperacionCobroAfectarComponent implements OnInit {
       '',
       0
     );
+  }
+
+  private loadParametro(): void {
+    this.loading = true;
+    this.parametroService
+      .getParametroMetodoPagos()
+      .pipe(take(1))
+      .subscribe((resp) => {
+        this.formasPago = resp;
+        this.loading = false;
+      });
   }
 
   actualizarFechaDesde(event) {

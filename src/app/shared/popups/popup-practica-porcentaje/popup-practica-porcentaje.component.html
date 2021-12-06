@@ -33,7 +33,7 @@
       <p-dropdown
         [options]="formasPago"
         [(ngModel)]="selectedForma"
-        optionLabel="name"
+        optionLabel="forma_pago"
       ></p-dropdown>
       <!-- <p>Selected Car: {{selectedForma || 'none'}}</p> -->
     </div>
@@ -98,12 +98,18 @@
           <th *ngFor="let col of columns" [ngSwitch]="col.field">
             <input
               class="form-control col-md-12 form-control-sm"
+              (input)="
+                dt.filter($event.target.value, col.field, col.filterMatchMode)
+              "
               *ngSwitchCase="'obra_social_nombre'"
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12 form-control-sm"
+              (input)="
+                dt.filter($event.target.value, col.field, col.filterMatchMode)
+              "
               *ngSwitchCase="'codigo'"
               pInputText
               type="text"
@@ -111,18 +117,27 @@
             />
             <input
               class="form-control col-md-12 form-control-sm"
+              (input)="
+                dt.filter($event.target.value, col.field, col.filterMatchMode)
+              "
               *ngSwitchCase="'pmo_descripcion'"
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12 form-control-sm"
+              (input)="
+                dt.filter($event.target.value, col.field, col.filterMatchMode)
+              "
               *ngSwitchCase="'complejidad'"
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12 form-control-sm"
+              (input)="
+                dt.filter($event.target.value, col.field, col.filterMatchMode)
+              "
               *ngSwitchCase="'valor'"
               pInputText
               type="text"
@@ -177,7 +192,7 @@
     ><p-dropdown
       [options]="formasPago"
       [(ngModel)]="selectedForma"
-      optionLabel="name"
+      optionLabel="forma_pago"
     ></p-dropdown>
   </p-dialog>
 </div>

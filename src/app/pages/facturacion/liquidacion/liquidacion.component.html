@@ -128,6 +128,9 @@
           <th *ngFor="let col of columns" [ngSwitch]="col.field">
             <input
               class="form-control col-md-12"
+              (input)="
+                dt.filter($event.target.value, col.field, col.filterMatchMode)
+              "
               *ngSwitchCase="'apellido'"
               pInputText
               type="text"
@@ -135,30 +138,65 @@
             <input
               class="form-control col-md-12"
               *ngSwitchCase="'nombre'"
+              (input)="
+                dt.filter(
+                  $event.target['value'],
+                  col.field,
+                  col.filterMatchMode
+                )
+              "
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12"
               *ngSwitchCase="'dni'"
+              (input)="
+                dt.filter(
+                  $event.target['value'],
+                  col.field,
+                  col.filterMatchMode
+                )
+              "
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12"
               *ngSwitchCase="'fecha_nacimiento'"
+              (input)="
+                dt.filter(
+                  $event.target['value'],
+                  col.field,
+                  col.filterMatchMode
+                )
+              "
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12"
               *ngSwitchCase="'domicilio'"
+              (input)="
+                dt.filter(
+                  $event.target['value'],
+                  col.field,
+                  col.filterMatchMode
+                )
+              "
               pInputText
               type="text"
             />
             <input
               class="form-control col-md-12"
               *ngSwitchCase="'telefono_cel'"
+              (input)="
+                dt.filter(
+                  $event.target['value'],
+                  col.field,
+                  col.filterMatchMode
+                )
+              "
               pInputText
               type="text"
             />

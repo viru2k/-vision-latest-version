@@ -13,7 +13,13 @@ import { DatePipe, formatDate } from '@angular/common';
 declare const require: any;
 const jsPDF = require('jspdf');
 require('jspdf-autotable');
-import { FormControl, Validators, FormGroup, Form } from '@angular/forms';
+import {
+  FormControl,
+  Validators,
+  FormGroup,
+  Form,
+  FormBuilder,
+} from '@angular/forms';
 
 import swal from 'sweetalert2';
 import { MedicoService } from '../../../services/medico.service';
@@ -64,18 +70,23 @@ export class HistoriaClinicaComponent implements OnInit {
   selectedReceta: string[] = [];
   selectedIndicaciones: string;
   historia_clinicadiagnostico: string = '';
+  form: FormGroup;
 
   constructor(
     private miServicio: MedicoService,
     private router: Router,
     private messageService: MessageService,
-    public dialogService: DialogService
+    public dialogService: DialogService,
+    fb: FormBuilder
   ) {
+    this.form = fb.group({
+      phone: [''],
+    });
+
     if (this.router.getCurrentNavigation().extras.state != undefined) {
       this.paciente =
         this.router.getCurrentNavigation().extras.state['paciente'];
       console.log(this.paciente);
-      this.formPaciente.patchValue(this.popItemPaciente);
     }
 
     this.listarecetas = [

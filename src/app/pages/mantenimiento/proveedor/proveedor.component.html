@@ -40,6 +40,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'proveedor_nombre'"
             pInputText
             type="text"
@@ -47,6 +50,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'tipo_documento'"
             pInputText
             type="text"
@@ -54,6 +60,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'proveedor_cuit'"
             pInputText
             type="text"
@@ -61,6 +70,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'condicion_iva'"
             pInputText
             type="text"
@@ -68,6 +80,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'proveedor_direccion'"
             pInputText
             type="text"

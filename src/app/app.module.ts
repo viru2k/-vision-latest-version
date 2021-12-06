@@ -1,5 +1,9 @@
+import { PositivePipe } from './shared/directive/simbol-directive';
+import { SignDirective } from './shared/directive/sign-directive';
+import { RecetaComponent } from './pages/mantenimiento/parametro/receta/receta.component';
 // Route
 import { AppRoutingModule } from './app-routing.module';
+import { HashLocationStrategy, LocationStrategy } from '@angular/common';
 
 import { PopupAccesoAutorizacionOsEditarComponent } from './shared/popups/popup-acceso-autorizacion-os-editar/popup-acceso-autorizacion-os-editar.component';
 import { PopupAccesoAutorizacionOsComponent } from './shared/popups/popup-acceso-autorizacion-os/popup-acceso-autorizacion-os.component';
@@ -225,8 +229,6 @@ import { PopupUsuarioEditarPasswordComponent } from './pages/mantenimiento/usuar
 import { CirugiaEditarComponent } from './pages/lista/cirugia-editar/cirugia-editar.component';
 import { EstudioComponent } from './pages/lista/estudio/estudio.component';
 import { EstudioEditarComponent } from './pages/lista/estudio-editar/estudio-editar.component';
-import { RecetaEditarComponent } from './pages/lista/receta-editar/receta-editar.component';
-import { RecetaComponent } from './pages/lista/receta/receta.component';
 import { ObrasocialAutorizacionWebEditarComponent } from './pages/lista/obrasocial-autorizacion-web-editar/obrasocial-autorizacion-web-editar.component';
 import { ObrasocialAutorizacionWebComponent } from './pages/lista/obrasocial-autorizacion-web/obrasocial-autorizacion-web.component';
 import { ChatComponent } from './pages/chat/chat.component';
@@ -271,6 +273,12 @@ import { ExcelService } from './services/excel.service';
 
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { MetodoPagoComponent } from './pages/mantenimiento/parametro/metodo-pago/metodo-pago.component';
+import { EstudiosComponent } from './pages/mantenimiento/parametro/estudios/estudios.component';
+import { PopupMetodoPagoComponent } from './pages/mantenimiento/parametro/metodo-pago/popup-metodo-pago/popup-metodo-pago.component';
+import { PopupEstudiosComponent } from './pages/mantenimiento/parametro/estudios/popup-estudios/popup-estudios.component';
+import { PopupRecetaComponent } from './pages/mantenimiento/parametro/receta/popup-receta/popup-receta.component';
+import { LenteProveedorComponent } from './pages/mantenimiento/stock/lente-proveedor.component';
 
 registerLocaleData(localeEsAR, 'es-Ar');
 
@@ -371,8 +379,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PopupOperacionCobroRegistroBuscarComponent,
     AgendaConsultaComponent,
     OperacionCobroConsultaGerenciaComponent,
-    NumberToWordsPipe,
-
     PopupEstudiosImagenComponent,
     PopupOperacionCobroPresentacionComponent,
     PopupOperacionCobroPresentacionEditarRegistroComponent,
@@ -418,8 +424,6 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     CirugiaEditarComponent,
     EstudioComponent,
     EstudioEditarComponent,
-    RecetaEditarComponent,
-    RecetaComponent,
     ObrasocialAutorizacionWebEditarComponent,
     ObrasocialAutorizacionWebComponent,
     ChatComponent,
@@ -460,9 +464,18 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     UsuarioPasswordComponent,
     PopupDocumentacionDetalleComponent,
     EstudioCargaComponent,
+    MetodoPagoComponent,
+    PopupMetodoPagoComponent,
+    EstudiosComponent,
+    RecetaComponent,
+    PopupEstudiosComponent,
+    PopupRecetaComponent,
+    LenteProveedorComponent,
+    NumberToWordsPipe,
+    SignDirective,
+    PositivePipe,
   ],
   imports: [
-    AppRoutingModule,
     GalleriaModule,
     FileUploadModule,
     BrowserModule,
@@ -494,6 +507,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     InputSwitchModule,
     ToggleButtonModule,
     AutoCompleteModule,
+    AppRoutingModule,
     SocketIoModule.forRoot(config),
     TranslateModule.forRoot({
       loader: {
@@ -503,7 +517,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       },
     }),
   ],
-
+  exports: [SignDirective],
   entryComponents: [
     PopupObrasocialComponent,
     PopupPmoComponent,
@@ -625,6 +639,10 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PopupMovimientoComponent,
     PopupMovimientoFindFacturaComponent,
     PopupMovimientoFindPacienteCobroComponent,
+    PopupMetodoPagoComponent,
+    PopupEstudiosComponent,
+    PopupRecetaComponent,
+    LenteComponent,
   ],
 
   providers: [
@@ -636,7 +654,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ExcelService,
     { provide: LOCALE_ID, useValue: 'es-Ar' },
     MultiSelectModule,
-    //NgxQRCodeModule,
+
     {
       provide: HTTP_INTERCEPTORS,
       useFactory: function (injector: Injector) {
@@ -646,6 +664,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
       deps: [Injector],
     },
     { provide: HTTP_INTERCEPTORS, useClass: ErrorInterceptor, multi: true },
+    { provide: LocationStrategy, useClass: HashLocationStrategy },
     SweetAlertService,
   ],
   bootstrap: [AppComponent],

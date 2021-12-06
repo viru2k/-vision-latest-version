@@ -1,5 +1,6 @@
+import { Regex } from './../../regex/regex';
 import { Component, OnInit } from '@angular/core';
-import { CirugiaService } from '../../../services/cirugia.service';
+
 import { MessageService } from 'primeng-lts/api';
 import {
   DialogService,
@@ -7,7 +8,7 @@ import {
   DynamicDialogConfig,
 } from 'primeng-lts/dynamicdialog';
 import { HistoriaClinica } from '../../../models/historia-clinica.model';
-import { FormControl, Validators, FormGroup } from '@angular/forms';
+import { FormControl, Validators, FormGroup, NgControl } from '@angular/forms';
 import swal from 'sweetalert2';
 declare const require: any;
 const jsPDF = require('jspdf');
@@ -45,7 +46,8 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     private messageService: MessageService,
     public ref: DynamicDialogRef,
     public dialogService: DialogService,
-    private cp: DecimalPipe
+    private cp: DecimalPipe,
+    private regex: Regex
   ) {
     this.listarecetas = [
       { label: 'TEXTO', value: { id: 1, name: 'TEXTO', code: 'TEXTO' } },
@@ -256,22 +258,29 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
   LEJOS_OI_E_INT: number;
 
   actualizarLEJOS_OD_E() {
-    this.LEJOS_OD_E_INT = Number(this.dataForm.value.LEJOS_OD_E);
+    /*     this.LEJOS_OD_E_INT = Number(this.dataForm.value.LEJOS_OD_E);
     this.dataForm.patchValue({
       LEJOS_OD_E: this.cp.transform(this.dataForm.value.LEJOS_OD_E, '1.2-2'),
+    }); */
+
+    this.dataForm.patchValue({
+      LEJOS_OD_E: this.regex.onInputFormat(this.dataForm.value.LEJOS_OD_E),
     });
   }
 
   actualizarLEJOS_OI_E() {
-    this.LEJOS_OI_E_INT = Number(this.dataForm.value.LEJOS_OI_E);
+    /*     this.LEJOS_OI_E_INT = Number(this.dataForm.value.LEJOS_OI_E);
     this.dataForm.patchValue({
       LEJOS_OI_E: this.cp.transform(this.dataForm.value.LEJOS_OI_E, '1.2-2'),
+    }); */
+    this.dataForm.patchValue({
+      LEJOS_OI_E: this.regex.onInputFormat(this.dataForm.value.LEJOS_OI_E),
     });
   }
 
   actualizarLEJOS_OD_C() {
     this.dataForm.patchValue({
-      LEJOS_OD_C: this.cp.transform(this.dataForm.value.LEJOS_OD_C, '1.2-2'),
+      LEJOS_OD_C: this.regex.onInputFormat(this.dataForm.value.LEJOS_OD_C),
     });
   }
   actualizarLEJOS_OD_2() {
@@ -290,8 +299,11 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
   }
 
   actualizarLEJOS_OI_C() {
-    this.dataForm.patchValue({
+    /*   this.dataForm.patchValue({
       LEJOS_OI_C: this.cp.transform(this.dataForm.value.LEJOS_OI_C, '1.2-2'),
+    }); */
+    this.dataForm.patchValue({
+      LEJOS_OI_C: this.regex.onInputFormat(this.dataForm.value.LEJOS_OI_C),
     });
   }
   actualizarLEJOS_OI_2() {
@@ -308,6 +320,30 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     });
   }
 
+  actualizarCERCA_OI_E() {
+    this.dataForm.patchValue({
+      CERCA_OI_E: this.regex.onInputFormat(this.dataForm.value.CERCA_OI_E),
+    });
+  }
+
+  actualizarCERCA_OD_E() {
+    this.dataForm.patchValue({
+      CERCA_OD_E: this.regex.onInputFormat(this.dataForm.value.CERCA_OD_E),
+    });
+  }
+
+  actualizarCERCA_OI_C() {
+    this.dataForm.patchValue({
+      CERCA_OI_C: this.regex.onInputFormat(this.dataForm.value.CERCA_OI_C),
+    });
+  }
+
+  actualizarCERCA_OD_C() {
+    this.dataForm.patchValue({
+      CERCA_OD_C: this.regex.onInputFormat(this.dataForm.value.CERCA_OD_C),
+    });
+  }
+
   actualizar(event: Event) {
     console.log(event);
     this.valor_agregar = this.dataForm.value.agregar;
@@ -315,16 +351,26 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     /** OD */
     if (this.dataForm.value.LEJOS_OD_E) {
       if (this.valor_agregar != 0) {
+        console.log(
+          'suma',
+          Number(this.dataForm.value.LEJOS_OD_E) + this.dataForm.value.agregar
+        );
+
         this.dataForm.patchValue({
-          CERCA_OD_E: Number(this.LEJOS_OD_E_INT) + this.dataForm.value.agregar,
+          // CERCA_OD_E: Number(this.LEJOS_OD_E_INT) + this.dataForm.value.agregar,
+          CERCA_OD_E:
+            Number(this.dataForm.value.LEJOS_OD_E) +
+            this.dataForm.value.agregar,
         });
+
         console.log(this.dataForm.value.CERCA_OD_E);
-        this.dataForm.patchValue({
+
+        /*      this.dataForm.patchValue({
           CERCA_OD_E: this.cp.transform(
             this.dataForm.value.CERCA_OD_E,
             '1.2-2'
           ),
-        });
+        }); */
       } else {
         this.dataForm.patchValue({
           CERCA_OD_E: Number(this.LEJOS_OD_E_INT) + this.dataForm.value.agregar,
@@ -339,14 +385,16 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     if (this.dataForm.value.LEJOS_OI_E) {
       if (this.valor_agregar != 0) {
         this.dataForm.patchValue({
-          CERCA_OI_E: Number(this.LEJOS_OI_E_INT) + this.dataForm.value.agregar,
+          CERCA_OI_E:
+            Number(this.dataForm.value.LEJOS_OI_E) +
+            this.dataForm.value.agregar,
         });
-        this.dataForm.patchValue({
+        /*  this.dataForm.patchValue({
           CERCA_OI_E: this.cp.transform(
             this.dataForm.value.CERCA_OI_E,
             '1.2-2'
           ),
-        });
+        }); */
       } else {
         //this.dataForm.patchValue({CERCA_OI_E: ''});
         this.dataForm.patchValue({
@@ -797,7 +845,7 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
       if (this.dataForm.value.LEJOS_OD_E.charAt(0) === '-') {
         LEJOS_OD_E = this.dataForm.value.LEJOS_OD_E;
       } else {
-        LEJOS_OD_E = '+' + this.dataForm.value.LEJOS_OD_E;
+        LEJOS_OD_E = this.dataForm.value.LEJOS_OD_E;
       }
     }
     if (this.dataForm.value.LEJOS_OD_C) {
@@ -805,27 +853,26 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
       if (this.dataForm.value.LEJOS_OD_C.charAt(0) === '-') {
         LEJOS_OD_C = this.dataForm.value.LEJOS_OD_C;
       } else {
-        LEJOS_OD_C = '+' + this.dataForm.value.LEJOS_OD_C;
+        LEJOS_OD_C = this.dataForm.value.LEJOS_OD_C;
       }
     }
 
     if (this.dataForm.value.LEJOS_OI_E) {
       console.log(this.dataForm.value.LEJOS_OI_E.charAt(0));
-      console.log(this.dataForm.value.LEJOS_OI_E);
       let LEJOS_OI_E_T = Number(this.dataForm.value.LEJOS_OI_E);
       if (this.dataForm.value.LEJOS_OI_E.charAt(0) === '-') {
         LEJOS_OI_E = this.dataForm.value.LEJOS_OI_E;
       } else {
-        LEJOS_OI_E = '+' + this.dataForm.value.LEJOS_OI_E;
+        LEJOS_OI_E = this.dataForm.value.LEJOS_OI_E;
       }
     }
 
     if (this.dataForm.value.LEJOS_OI_C) {
-      console.log(this.dataForm.value.LEJOS_OD_E.charAt(0));
+      console.log(this.dataForm.value.LEJOS_OI_C.charAt(0));
       if (this.dataForm.value.LEJOS_OI_C.charAt(0) === '-') {
         LEJOS_OI_C = this.dataForm.value.LEJOS_OI_C;
       } else {
-        LEJOS_OI_C = '+' + this.dataForm.value.LEJOS_OI_C;
+        LEJOS_OI_C = this.dataForm.value.LEJOS_OI_C;
       }
     }
 
@@ -834,7 +881,7 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
       if (CERCA_OD_E_.charAt(0) === '-') {
         CERCA_OD_E = CERCA_OD_E_;
       } else {
-        CERCA_OD_E = '+' + CERCA_OD_E_;
+        CERCA_OD_E = CERCA_OD_E_;
       }
       console.log(this.dataForm.value.CERCA_OD_E);
       /*  if(this.dataForm.value.CERCA_OD_E>0){
@@ -849,7 +896,7 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
       if (CERCA_OI_E_.charAt(0) === '-') {
         CERCA_OI_E = CERCA_OI_E_;
       } else {
-        CERCA_OI_E = '+' + CERCA_OI_E_;
+        CERCA_OI_E = CERCA_OI_E_;
       }
       /* if(this.dataForm.value.CERCA_OI_E>0){
       CERCA_OI_E ='+'+this.dataForm.value.CERCA_OI_E;
@@ -862,13 +909,13 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
       if (this.dataForm.value.CERCA_OD_C.charAt(0) === '-') {
         CERCA_OD_C = this.dataForm.value.CERCA_OD_C;
       } else {
-        CERCA_OD_C = '+' + this.dataForm.value.CERCA_OD_C;
+        CERCA_OD_C = this.dataForm.value.CERCA_OD_C;
       }
     }
 
     if (this.dataForm.value.CERCA_OI_C) {
       if (this.dataForm.value.CERCA_OI_C.charAt(0) !== '-') {
-        CERCA_OI_C = '+' + this.dataForm.value.CERCA_OI_C;
+        CERCA_OI_C = this.dataForm.value.CERCA_OI_C;
       } else {
         CERCA_OI_C = this.dataForm.value.CERCA_OI_C;
       }

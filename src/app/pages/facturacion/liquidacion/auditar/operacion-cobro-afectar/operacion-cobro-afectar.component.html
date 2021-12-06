@@ -294,13 +294,22 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'operacion_cobro_id'"
             pInputText
             type="text"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
           />
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'apellido'"
             pInputText
             type="text"
@@ -308,6 +317,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'nombre'"
             pInputText
             type="text"
@@ -315,22 +327,28 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'dni'"
             pInputText
             type="text"
           />
           <p-multiSelect
-          [style]="{ height: '28px', width: '100%', 'font-size': '10px' }"
-          [options]="_barra_afiliado"
-          appendTo="body"
-          defaultLabel="Filtrar"
-          [showHeader]="false"
-          *ngIf="col.field == 'barra_afiliado'"
-          (onChange)="dt.filter($event.value, col.field, 'in')"
-        ></p-multiSelect>
+            [style]="{ height: '28px', width: '100%', 'font-size': '10px' }"
+            [options]="_barra_afiliado"
+            appendTo="body"
+            defaultLabel="Filtrar"
+            [showHeader]="false"
+            *ngIf="col.field == 'barra_afiliado'"
+            (onChange)="dt.filter($event.value, col.field, 'in')"
+          ></p-multiSelect>
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'gravado_adherente'"
             pInputText
             type="text"
@@ -347,6 +365,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'descripcion'"
             pInputText
             type="text"
@@ -370,6 +391,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'internacion_tipo'"
             pInputText
             type="text"
@@ -385,6 +409,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'usuario_cobro_nombre'"
             pInputText
             type="text"
@@ -392,13 +419,23 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
+            type="date"
+            field="fecha_cobro"
+            display="menu"
             *ngSwitchCase="'fecha_cobro'"
             pInputText
             type="text"
           />
+
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'cantidad'"
             pInputText
             type="text"
@@ -406,6 +443,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'categorizacion'"
             pInputText
             type="text"
@@ -413,6 +453,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'valor_facturado'"
             pInputText
             type="text"
@@ -420,6 +463,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'valor_final'"
             pInputText
             type="text"
@@ -452,8 +498,10 @@
         <td style="width: 10%">{{ elementos.apellido }}</td>
         <td style="width: 10%">{{ elementos.nombre }}</td>
         <td style="font-size: 10px; width: 7%">{{ elementos.dni }}</td>
-        <td style="font-size: 10px; width: 5%">{{ elementos.barra_afiliado }}</td>
-        
+        <td style="font-size: 10px; width: 5%">
+          {{ elementos.barra_afiliado }}
+        </td>
+
         <td style="font-size: 10px; width: 4%">
           {{ elementos.gravado_adherente }}
         </td>

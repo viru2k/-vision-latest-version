@@ -287,6 +287,13 @@
                 <th *ngFor="let col of columns" [ngSwitch]="col.field">
                   <input
                     class="form-control col-md-12 form-control-sm"
+                    (input)="
+                      dt.filter(
+                        $event.target.value,
+                        col.field,
+                        col.filterMatchMode
+                      )
+                    "
                     *ngSwitchCase="'dia_nombre'"
                     pInputText
                     type="text"
@@ -294,6 +301,13 @@
                   <!-- <p-dropdown *ngSwitchCase="'dia_nombre'" [options]="dia" [style]="{'width':'100%'}" (onChange)="dt.filter($event.value, col.field, 'equals')"></p-dropdown> -->
                   <input
                     class="form-control col-md-12 form-control-sm"
+                    (input)="
+                      dt.filter(
+                        $event.target.value,
+                        col.field,
+                        col.filterMatchMode
+                      )
+                    "
                     *ngSwitchCase="'hora_desde'"
                     pInputText
                     type="text"
@@ -301,6 +315,13 @@
                   <input
                     class="form-control col-md-12 form-control-sm"
                     *ngSwitchCase="'nombreyapellido'"
+                    (input)="
+                      dt.filter(
+                        $event.target['value'],
+                        col.field,
+                        col.filterMatchMode
+                      )
+                    "
                     pInputText
                     type="text"
                   />
@@ -309,6 +330,13 @@
                     *ngSwitchCase="'boton'"
                     pInputText
                     type="text"
+                    (input)="
+                      dt.filter(
+                        $event.target['value'],
+                        col.field,
+                        col.filterMatchMode
+                      )
+                    "
                   />
                 </th>
               </tr>

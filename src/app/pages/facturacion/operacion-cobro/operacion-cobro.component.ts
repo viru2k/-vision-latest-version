@@ -1002,6 +1002,7 @@ export class OperacionCobroComponent implements OnInit {
                 console.log(this.operacionCobroPractica.obra_social_id);
                 if (
                   this.operacionCobroPractica.forma_pago === 'EFECTIVO' ||
+                  this.operacionCobroPractica.forma_pago === 'SIN CARGO' ||
                   this.operacionCobroPractica.forma_pago ===
                     'TARJETA - CREDITO' ||
                   this.operacionCobroPractica.forma_pago === 'TARJETA - DEBITO'

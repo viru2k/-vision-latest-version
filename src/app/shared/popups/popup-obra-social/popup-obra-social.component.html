@@ -39,6 +39,9 @@
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'nombre'"
             pInputText
             type="text"
@@ -46,30 +49,45 @@
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'descripcion'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'es_habilitada'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'entidad_nombre'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'tiene_distribucion'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'es_coseguro'"
             pInputText
             type="text"

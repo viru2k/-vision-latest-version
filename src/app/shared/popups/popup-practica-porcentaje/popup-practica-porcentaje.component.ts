@@ -1,3 +1,4 @@
+import { ParametroService } from './../../../services/parametro.service';
 import { ConvenioService } from './../../../services/convenio.service';
 import { Convenio } from './../../../models/convenio.model';
 
@@ -11,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 import swal from 'sweetalert2';
 import { PracticaDistribucionRegistro } from 'src/app/models/practica-distribucion-registro.model';
 import { OperacionCobroPractica } from 'src/app/models/operacion-cobro-practica.model';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-popup-practica-porcentaje',
@@ -37,13 +39,14 @@ export class PopupPracticaPorcentajeComponent implements OnInit {
   display: boolean;
 
   constructor(
+    private parametroService: ParametroService,
     private miServico: ConvenioService,
     public config: DynamicDialogConfig,
     private messageService: MessageService,
     public ref: DynamicDialogRef,
     public dialogService: DialogService
   ) {
-    this.formasPago = [
+    /*    this.formasPago = [
       { name: 'TRANSFERENCIA', code: '1' },
       { name: 'EFECTIVO', code: '2' },
       { name: 'TARJETA - CREDITO', code: '3' },
@@ -51,7 +54,7 @@ export class PopupPracticaPorcentajeComponent implements OnInit {
       { name: 'CHEQUE', code: '5' },
       { name: 'VARIOS', code: '6' },
     ];
-
+ */
     this.cols = [
       { field: 'obra_social_nombre', header: 'Obra Social', width: '20%' },
       { field: 'codigo', header: 'Codigo', width: '10%' },
@@ -62,8 +65,8 @@ export class PopupPracticaPorcentajeComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.selectedForma = this.formasPago[0];
     console.log(this.config.data);
+    this.loadParametro();
     this.loadList();
     this.selectedItemPractica = new OperacionCobroPractica(
       '0',
@@ -96,6 +99,18 @@ export class PopupPracticaPorcentajeComponent implements OnInit {
       ''
     );
     this.observacion = '';
+  }
+
+  private loadParametro(): void {
+    this.loading = true;
+    this.parametroService
+      .getParametroMetodoPagos()
+      .pipe(take(1))
+      .subscribe((resp) => {
+        this.formasPago = resp;
+        this.selectedForma = this.formasPago[0];
+        this.loading = false;
+      });
   }
 
   loadList() {
@@ -211,7 +226,7 @@ export class PopupPracticaPorcentajeComponent implements OnInit {
       this.selectedItemPractica.es_coseguro = this.selectedItem.es_coseguro;
       this.selectedItemPractica.tiene_distribucion =
         this.selectedItem.tiene_distribucion;
-      this.selectedItemPractica.forma_pago = this.selectedForma['name'];
+      this.selectedItemPractica.forma_pago = this.selectedForma['forma_pago'];
       console.log(this.selectedItemPractica);
       this.ref.close(this.selectedItemPractica);
     } else {

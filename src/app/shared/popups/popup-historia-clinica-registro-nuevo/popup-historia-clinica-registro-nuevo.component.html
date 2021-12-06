@@ -440,13 +440,15 @@
                                 ml-2
                                 mr-2
                               "
+                              type="text"
+                              (focusout)="actualizarLEJOS_OD_E()"
                               formControlName="LEJOS_OD_E"
-                              (change)="actualizarLEJOS_OD_E()"
                             />
                             <input
                               class="form-control col-md-2 form-control-sm mr-2"
                               formControlName="LEJOS_OD_C"
-                              (change)="actualizarLEJOS_OD_C()"
+                              type="text"
+                              (focusout)="actualizarLEJOS_OD_C()"
                             />
                             <input
                               class="form-control col-md-2 form-control-sm mr-2"
@@ -477,8 +479,9 @@
                                 mr-2
                                 mt-1
                               "
+                              type="text"
+                              (focusout)="actualizarLEJOS_OI_E()"
                               formControlName="LEJOS_OI_E"
-                              (change)="actualizarLEJOS_OI_E()"
                             />
                             <input
                               class="
@@ -488,9 +491,11 @@
                                 mr-2
                                 mt-1
                               "
+                              type="text"
+                              (focusout)="actualizarLEJOS_OI_C()"
                               formControlName="LEJOS_OI_C"
-                              (change)="actualizarLEJOS_OI_C()"
                             />
+
                             <input
                               class="
                                 form-control
@@ -547,11 +552,15 @@
                                 ml-2
                                 mr-2
                               "
+                              type="text"
+                              (change)="actualizarCERCA_OD_E()"
                               formControlName="CERCA_OD_E"
                             />
                             <input
                               class="form-control col-md-2 form-control-sm mr-2"
                               formControlName="CERCA_OD_C"
+                              type="text"
+                              (change)="actualizarCERCA_OD_C()"
                             />
                             <input
                               class="form-control col-md-2 form-control-sm mr-2"
@@ -579,6 +588,8 @@
                                 mr-2
                                 mt-1
                               "
+                              type="text"
+                              (change)="actualizarCERCA_OI_E()"
                               formControlName="CERCA_OI_E"
                             />
                             <input
@@ -589,6 +600,8 @@
                                 mr-2
                                 mt-1
                               "
+                              type="text"
+                              (change)="actualizarCERCA_OI_C()"
                               formControlName="CERCA_OI_C"
                             />
                             <input

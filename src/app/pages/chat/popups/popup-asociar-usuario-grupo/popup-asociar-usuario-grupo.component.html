@@ -18,7 +18,6 @@
   <p-table
     #dt1
     [columns]="cols_grupo"
-   
     [value]="elementos_grupos"
     selectionMode="single"
     [resizableColumns]="true"
@@ -102,7 +101,6 @@
   <p-table
     #dt
     class=""
-   
     selectionMode="single"
     [columns]="cols"
     [value]="elementos"
@@ -135,6 +133,9 @@
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'nombreyapellido'"
             pInputText
             type="text"

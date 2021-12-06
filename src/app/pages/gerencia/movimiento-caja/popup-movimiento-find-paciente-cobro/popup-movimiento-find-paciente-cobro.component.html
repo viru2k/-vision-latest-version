@@ -186,6 +186,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'liquidacion_distribucion_id'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -193,6 +196,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'operacion_cobro_id'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -200,6 +206,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'apellido'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -207,6 +216,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'nombre'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -214,6 +226,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'dni'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -230,6 +245,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'gravado_adherente'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -237,6 +255,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'descripcion'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -252,6 +273,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'codigo'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -267,6 +291,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'fecha_cobro'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -274,6 +301,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'cantidad'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -281,6 +311,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'valor_original'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -288,6 +321,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'valor_facturado'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />
@@ -295,6 +331,9 @@
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
             *ngSwitchCase="'distribucion'"
+            (input)="
+              dtp.filter($event.target['value'], col.field, col.filterMatchMode)
+            "
             pInputText
             type="text"
           />

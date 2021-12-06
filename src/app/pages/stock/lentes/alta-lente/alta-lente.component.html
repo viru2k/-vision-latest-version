@@ -171,12 +171,18 @@
           ></p-multiSelect>
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'lote'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'fecha_vencimiento'"
             pInputText
             type="text"
@@ -191,12 +197,18 @@
           ></p-multiSelect>
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'remito'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'factura'"
             pInputText
             type="text"

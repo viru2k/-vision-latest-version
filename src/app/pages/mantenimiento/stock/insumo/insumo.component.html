@@ -41,12 +41,18 @@
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'insumo_descripcion'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'cantidad'"
             pInputText
             type="text"

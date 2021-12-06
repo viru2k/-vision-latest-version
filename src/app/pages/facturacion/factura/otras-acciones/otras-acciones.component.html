@@ -79,7 +79,6 @@
 <p-table
   #dt
   class="pt-2 m-2"
-  
   selectionMode="single"
   [columns]="cols"
   [value]="elementos"
@@ -152,6 +151,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'nombreyapellido'"
           pInputText
           type="text"
@@ -159,6 +161,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'descripcion'"
           pInputText
           type="text"
@@ -166,6 +171,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'punto_vta'"
           pInputText
           type="text"
@@ -173,6 +181,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'factura_numero'"
           pInputText
           type="text"
@@ -180,6 +191,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'fecha'"
           pInputText
           type="text"
@@ -187,6 +201,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'factura_cliente'"
           pInputText
           type="text"
@@ -194,6 +211,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'factura_documento_comprador_descripcion'"
           pInputText
           type="text"
@@ -201,6 +221,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'factura_documento'"
           pInputText
           type="text"
@@ -208,6 +231,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'importe_exento_iva'"
           pInputText
           type="text"
@@ -215,6 +241,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'importe_gravado'"
           pInputText
           type="text"
@@ -225,6 +254,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'importe_iva'"
           pInputText
           type="text"
@@ -232,6 +264,9 @@
         <input
           style="font-size: 12px"
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'importe_total'"
           pInputText
           type="text"

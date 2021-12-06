@@ -1,3 +1,4 @@
+import { MetodoPagoComponent } from './pages/mantenimiento/parametro/metodo-pago/metodo-pago.component';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
@@ -57,6 +58,9 @@ import { MovimientoConceptoCuentaComponent } from './pages/mantenimiento/movimie
 import { MovimientoTipoComprobanteComponent } from './pages/mantenimiento/movimiento-caja/movimiento-tipo-comprobante/movimiento-tipo-comprobante.component';
 import { ListadoCajaComponent } from './pages/gerencia/movimiento-caja/listado-caja/listado-caja.component';
 import { ProveedorComponent } from './pages/mantenimiento/proveedor/proveedor.component';
+import { EstudiosComponent } from './pages/mantenimiento/parametro/estudios/estudios.component';
+import { RecetaComponent } from './pages/mantenimiento/parametro/receta/receta.component';
+import { LenteProveedorComponent } from './pages/mantenimiento/stock/lente-proveedor.component';
 
 const routes: Routes = [
   /** principal **/ { path: 'inicio', component: EmptyComponent },
@@ -386,6 +390,30 @@ const routes: Routes = [
   {
     path: 'movimientos/caja/concepto/comprobante',
     component: MovimientoTipoComprobanteComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'gerencia_control' },
+  },
+  {
+    path: 'parametros/estudio',
+    component: EstudiosComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'gerencia_control' },
+  },
+  {
+    path: 'parametros/receta',
+    component: RecetaComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'gerencia_control' },
+  },
+  {
+    path: 'parametros/metodopago',
+    component: MetodoPagoComponent,
+    canActivate: [AuthGuard],
+    data: { role: 'gerencia_control' },
+  },
+  {
+    path: 'insumo/lente',
+    component: LenteProveedorComponent,
     canActivate: [AuthGuard],
     data: { role: 'gerencia_control' },
   },

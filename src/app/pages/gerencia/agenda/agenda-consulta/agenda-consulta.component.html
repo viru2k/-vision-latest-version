@@ -190,24 +190,52 @@
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'operacion_cobro_id'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'paciente_apellido'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'paciente_nombre'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'paciente_dni'"
                   pInputText
                   type="text"
@@ -238,24 +266,52 @@
                 ></p-multiSelect>
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'fecha_turno'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'hora_desde'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'llegada'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'atendido'"
                   pInputText
                   type="text"
@@ -286,12 +342,26 @@
                 ></p-multiSelect>
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'usuario_alta'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'agenda_creacion'"
                   pInputText
                   type="text"

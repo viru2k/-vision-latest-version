@@ -151,6 +151,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'operacion_cobro_id'"
             pInputText
             type="text"
@@ -158,6 +161,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'operacion_cobro_numero_bono'"
             pInputText
             type="text"
@@ -165,6 +171,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'apellido'"
             pInputText
             type="text"
@@ -172,6 +181,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'nombre'"
             pInputText
             type="text"
@@ -179,6 +191,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'dni'"
             pInputText
             type="text"
@@ -186,6 +201,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'obra_social_nombre'"
             pInputText
             type="text"
@@ -193,6 +211,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'descripcion'"
             pInputText
             type="text"
@@ -200,14 +221,22 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'complejidad'"
             pInputText
             type="text"
           />
-          <!--    <p-multiSelect [style]="{'height':'28px', 'width': '100%', 'font-size': '10px'}" *ngSwitchCase="'complejidad'" [style]="{'width':'100%', 'height': '30px'}" [options]="complejidades"  (onChange)="dt.filter($event.target['value'], col.field, col.filterMatchMode)"></p-multiSelect>  -->
+          <!--    <p-multiSelect [style]="{'height':'28px', 'width': '100%', 'font-size': '10px'}" (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "  *ngSwitchCase="'complejidad'" [style]="{'width':'100%', 'height': '30px'}" [options]="complejidades"  (onChange)="dt.filter($event.target['value'], col.field, col.filterMatchMode)"></p-multiSelect>  -->
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'codigo'"
             pInputText
             type="text"
@@ -215,6 +244,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'medico_nombre'"
             pInputText
             type="text"
@@ -222,6 +254,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'usuario_cobro_nombre'"
             pInputText
             type="text"
@@ -229,6 +264,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'fecha_cobro'"
             pInputText
             type="text"
@@ -236,6 +274,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'cantidad'"
             pInputText
             type="text"
@@ -243,6 +284,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'valor_facturado'"
             pInputText
             type="text"
@@ -250,6 +294,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'distribucion'"
             pInputText
             type="text"
@@ -257,6 +304,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'forma_pago'"
             pInputText
             type="text"

@@ -43,7 +43,9 @@
             field="apellido"
             display="menu"
           ></p-columnFilter>
-          <!--         <input class="form-control col-md-12 form-control-sm" *ngSwitchCase="'apellido'" pInputText type="text"  autofocus>                
+          <!--         <input class="form-control col-md-12 form-control-sm" (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "  *ngSwitchCase="'apellido'" pInputText type="text"  autofocus>                
               </th> -->
         </th>
       </tr>

@@ -102,66 +102,99 @@
             <th *ngFor="let col of columns" [ngSwitch]="col.field">
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'paciente_apellido'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'paciente_nombre'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'paciente_dni'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'paciente_obra_social_nombre'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'hora_desde'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'estado'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'nombreyapellido'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'dia_nombre'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'llegada'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'atendido'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'boton'"
                 pInputText
                 type="text"

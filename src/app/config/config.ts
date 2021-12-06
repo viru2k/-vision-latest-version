@@ -8,14 +8,14 @@ export const URL_ARCHIVO_SUBIDA = 'http://localhost/api-vision/public/api/';
 
 //export const config: SocketIoConfig = { url: 'https://communication-serivce.herokuapp.com/', options: {} };
 /* 
-export const URL_SERVICIOS = "http://messageserver/api-vision/public/api/";
+export const URL_SERVICIOS = 'http://messageserver/api-vision/public/api/';
 export const config: SocketIoConfig = {
-  url: "http://messageserver:4444",
+  url: 'http://messageserver:4444',
   options: {},
 };
 
-export const URL_ARCHIVO = "http://messageserver/api-vision/public/";
-export const URL_ARCHIVO_SUBIDA = "http://messageserver/api-vision/public/api/";
+export const URL_ARCHIVO = 'http://messageserver/api-vision/public/';
+export const URL_ARCHIVO_SUBIDA = 'http://messageserver/api-vision/public/api/';
  */
 //
 /***********SERVER DE PRUEBAS ********************** */

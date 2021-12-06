@@ -1,0 +1,119 @@
+import { Component, OnInit } from '@angular/core';
+import { SweetAlertService } from './../../../../../services/sweetalert.service';
+import { ParametroService } from './../../../../../services/parametro.service';
+import {
+  DynamicDialogConfig,
+  DynamicDialogRef,
+} from 'primeng-lts/dynamicdialog';
+import { FormGroup, Validators, FormControl } from '@angular/forms';
+
+@Component({
+  selector: 'app-popup-receta',
+  templateUrl: './popup-receta.component.html',
+  styles: [],
+})
+export class PopupRecetaComponent implements OnInit {
+  updateDataForm: FormGroup;
+  elementos: any;
+  unidades: any;
+  unidad: string;
+  esNuevo;
+  loading;
+  selectedItem: any;
+  selectedForma: any;
+  userData: any;
+
+  constructor(
+    public config: DynamicDialogConfig,
+    private parametroService: ParametroService,
+    private sweetAlertService: SweetAlertService,
+    public ref: DynamicDialogRef
+  ) {
+    this.updateDataForm = new FormGroup({
+      id: new FormControl(''),
+      receta: new FormControl('', Validators.required),
+      receta_descripcion: new FormControl(''),
+      estado: new FormControl(''),
+      esActivo: new FormControl(true),
+    });
+  }
+
+  ngOnInit() {
+    console.log(this.config.data);
+    if (this.config.data) {
+      console.log('es editable');
+      this.esNuevo = false;
+      this.updateDataForm.patchValue(this.config.data);
+      console.log(this.updateDataForm);
+      if (this.config.data.estado === 'ACTIVO') {
+        this.updateDataForm.patchValue({ esActivo: true });
+      } else {
+        this.updateDataForm.patchValue({ esActivo: false });
+      }
+    } else {
+      this.esNuevo = true;
+    }
+  }
+
+  guardarDatos() {
+    if (this.esNuevo) {
+      this.crear();
+    } else {
+      this.modificar();
+    }
+  }
+
+  crear() {
+    this.setEstado();
+    this.loading = true;
+    try {
+      this.parametroService
+        .setParametroReceta(this.updateDataForm.value)
+        .subscribe(
+          (resp) => {
+            this.loading = false;
+            console.log(resp);
+            this.ref.close(resp);
+          },
+          (error) => {
+            // error path
+            console.log(error);
+            this.sweetAlertService.errorAlert('error', error, '', false);
+          }
+        );
+    } catch (error) {}
+  }
+
+  modificar() {
+    this.setEstado();
+    console.log(this.updateDataForm.value.id);
+
+    console.log(this.updateDataForm);
+    try {
+      this.parametroService
+        .putParametroReceta(
+          this.updateDataForm.value,
+          this.updateDataForm.value.id
+        )
+        .subscribe(
+          (resp) => {
+            this.loading = false;
+            console.log(resp);
+            this.ref.close(resp);
+          },
+          (error) => {
+            // error path
+            console.log(error);
+          }
+        );
+    } catch (error) {}
+  }
+
+  private setEstado(): void {
+    if (this.updateDataForm.value.esActivo) {
+      this.updateDataForm.patchValue({ estado: 'ACTIVO' });
+    } else {
+      this.updateDataForm.patchValue({ estado: 'INACTIVO' });
+    }
+  }
+}

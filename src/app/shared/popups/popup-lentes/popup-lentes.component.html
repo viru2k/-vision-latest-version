@@ -38,42 +38,63 @@
       <th *ngFor="let col of columns" [ngSwitch]="col.field">
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'tipo'"
           pInputText
           type="text"
         />
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'dioptria'"
           pInputText
           type="text"
         />
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'lote'"
           pInputText
           type="text"
         />
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'fecha_vencimiento'"
           pInputText
           type="text"
         />
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'proveedor'"
           pInputText
           type="text"
         />
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'ubicacion'"
           pInputText
           type="text"
         />
         <input
           class="form-control col-md-12 form-control-sm"
+          (input)="
+            dt.filter($event.target.value, col.field, col.filterMatchMode)
+          "
           *ngSwitchCase="'estado'"
           pInputText
           type="text"

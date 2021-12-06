@@ -1,3 +1,45 @@
-<p>
-  lente works!
-</p>
+<form class="col-12" [formGroup]="updateDataForm">
+  <div class="row">
+    <div class="col-8">
+      <div class="form-group">
+        <label>Lente</label>
+        <input
+          class="form-control col-md-12 form-control-sm"
+          formControlName="tipo"
+        />
+        <div
+          *ngIf="updateDataForm.controls['tipo'].errors?.['required'] && updateDataForm.controls['tipo'].touched"
+          class="alert alert-warning"
+        >
+          * Este campo es requerido
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Proveedor</label>
+        <input
+          class="form-control col-md-12 form-control-sm"
+          formControlName="proveedor"
+        />
+        <div
+          *ngIf="updateDataForm.controls['proveedor'].errors?.['required'] && updateDataForm.controls['proveedor'].touched"
+          class="alert alert-warning"
+        >
+          * Este campo es requerido
+        </div>
+      </div>
+    </div>
+  </div>
+</form>
+
+<p-footer>
+  <div class="ui-dialog-buttonpane ui-helper-clearfix mt-2 mr-2">
+    <button
+      class="btn btn-info texto-roboto"
+      type="submit"
+      (click)="guardarDatos()"
+    >
+      Guardar
+    </button>
+  </div>
+</p-footer>

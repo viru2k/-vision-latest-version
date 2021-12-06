@@ -40,6 +40,9 @@
         <th *ngFor="let col of columns" [ngSwitch]="col.field">
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'obra_social_nombre'"
             pInputText
             type="text"
@@ -47,12 +50,18 @@
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'codigo'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'obra_social_practica_nombre'"
             pInputText
             type="text"
@@ -60,18 +69,27 @@
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'practica_distribucion_valor'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'practica_distribucion_porcentaje'"
             pInputText
             type="text"
           />
           <input
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'practica_distribucion_total'"
             pInputText
             type="text"

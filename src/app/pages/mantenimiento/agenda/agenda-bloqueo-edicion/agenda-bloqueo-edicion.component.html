@@ -66,18 +66,27 @@
             <th *ngFor="let col of columns" [ngSwitch]="col.field">
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'dia_nombre'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'hora_desde_hasta'"
                 pInputText
                 type="text"
               />
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'fecha'"
                 pInputText
                 type="text"
@@ -135,6 +144,9 @@
             <th *ngFor="let col of columns" [ngSwitch]="col.field">
               <input
                 class="form-control col-md-12 form-control-sm"
+                (input)="
+                  dt.filter($event.target.value, col.field, col.filterMatchMode)
+                "
                 *ngSwitchCase="'fecha'"
                 pInputText
                 type="text"

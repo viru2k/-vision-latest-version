@@ -897,12 +897,12 @@ export class NavbarComponent implements OnInit {
               {
                 label: 'Métodos de pago',
                 visible: !this.mantenimiento_stock_insumo,
-                routerLink: 'parametros/insumo',
+                routerLink: 'parametros/metodopago',
               },
               {
                 label: 'Estudios',
                 visible: !this.mantenimiento_stock_insumo,
-                routerLink: 'parametros/insumo',
+                routerLink: 'parametros/estudio',
               },
               {
                 label: 'Recetas',

@@ -40,6 +40,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'tipo_moneda'"
             pInputText
             type="text"

@@ -67,6 +67,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'id'"
             pInputText
             type="text"
@@ -122,6 +125,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'cant_orden'"
             pInputText
             type="text"
@@ -129,6 +135,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'total'"
             pInputText
             type="text"
@@ -144,6 +153,9 @@
           <input
             style="font-size: 12px"
             class="form-control col-md-12 form-control-sm"
+            (input)="
+              dt.filter($event.target.value, col.field, col.filterMatchMode)
+            "
             *ngSwitchCase="'nombreyapellido'"
             pInputText
             type="text"

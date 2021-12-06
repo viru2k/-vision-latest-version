@@ -140,6 +140,13 @@
               <th *ngFor="let col of columns" [ngSwitch]="col.field">
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'fecha_carga'"
                   pInputText
                   type="text"
@@ -182,6 +189,13 @@
                 ></p-multiSelect>
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'proveedor_nombre'"
                   pInputText
                   type="text"
@@ -191,6 +205,13 @@
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'comprobante_numero'"
                   pInputText
                   type="text"
@@ -200,6 +221,13 @@
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'descripcion'"
                   pInputText
                   type="text"
@@ -233,18 +261,39 @@
                 ></p-multiSelect>
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'importe'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'cotizacion'"
                   pInputText
                   type="text"
                 />
                 <input
                   class="form-control form-control-sm col-md-12"
+                  (input)="
+                    dt.filter(
+                      $event.target.value,
+                      col.field,
+                      col.filterMatchMode
+                    )
+                  "
                   *ngSwitchCase="'total'"
                   pInputText
                   type="text"
