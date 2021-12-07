@@ -4,6 +4,7 @@ import { RecetaComponent } from './pages/mantenimiento/parametro/receta/receta.c
 // Route
 import { AppRoutingModule } from './app-routing.module';
 import { HashLocationStrategy, LocationStrategy } from '@angular/common';
+import { QRCodeModule } from 'angularx-qrcode';
 
 import { PopupAccesoAutorizacionOsEditarComponent } from './shared/popups/popup-acceso-autorizacion-os-editar/popup-acceso-autorizacion-os-editar.component';
 import { PopupAccesoAutorizacionOsComponent } from './shared/popups/popup-acceso-autorizacion-os/popup-acceso-autorizacion-os.component';
@@ -508,6 +509,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     ToggleButtonModule,
     AutoCompleteModule,
     AppRoutingModule,
+    QRCodeModule,
     SocketIoModule.forRoot(config),
     TranslateModule.forRoot({
       loader: {

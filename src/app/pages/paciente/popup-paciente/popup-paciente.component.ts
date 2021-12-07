@@ -12,6 +12,7 @@ import { calendarioIdioma } from '../../../config/config';
 import { ObraSocial } from 'src/app/models/obra-social.model';
 import { PacienteService } from '../../../services/paciente.service';
 import { SweetAlertService } from './../../../services/sweetalert.service';
+import { MedicoService } from '../../../services/medico.service';
 
 @Component({
   selector: 'app-popup-paciente',
@@ -27,6 +28,7 @@ export class PopupPacienteNuevoComponent implements OnInit {
   edad: string;
   constructor(
     public pacienteService: PacienteService,
+    private medicoService: MedicoService,
     private sweetAlertService: SweetAlertService,
     public config: DynamicDialogConfig,
     private messageService: MessageService,
@@ -96,8 +98,8 @@ export class PopupPacienteNuevoComponent implements OnInit {
   }
 
   actualizarDni(): void {
-    this.pacienteService
-      .ActualizarDni(
+    this.medicoService
+      .updHistoriaClinicaDni(
         this.updateDataForm.value.dni,
         this.updateDataForm.value.dniNew
       )

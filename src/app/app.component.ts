@@ -32,3 +32,21 @@ export class AppComponent {
   }
   title = 'vision-latest-version';
 }
+
+//CODE TO GENERATE QR
+//HTML
+
+/* <h1>How to Generate QR Code in Angular? - ItSolutionStuff.com</h1>
+
+<qrcode
+  [qrdata]="'myAngularxQrCode'"
+  [width]="50"
+  [errorCorrectionLevel]="'M'"
+></qrcode> */
+
+// TS
+
+//declaration
+// public myAngularxQrCode: string = null;
+// use
+//    this.myAngularxQrCode = 'ItSoluionStuff.com';

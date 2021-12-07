@@ -1039,29 +1039,4 @@ export class PopupHistoriaClinicaRegistroNuevoComponent implements OnInit {
     }
   }
 
-  onInputFormat(value: any) {
-    let newVal = value.replace('/^(d{0,2})/', '');
-    //borra espacio
-    var hasComma = newVal.indexOf(',');
-    var hasDot = newVal.indexOf('.');
-
-    if (newVal.length === 0) {
-      newVal = '';
-    }
-    if (hasComma !== -1) {
-      newVal = newVal.replace(',', '.');
-    }
-
-    newVal = this.cp.transform(newVal, '1.2-2');
-    if (newVal !== '0') {
-      var isNegative = newVal.indexOf('-');
-      if (isNegative != -1) {
-        newVal = newVal.replace(/^(\d{0,2})/, '$1');
-      } else {
-        newVal = newVal.replace(/^(\d{0,2})/, '+$1');
-      }
-    }
-
-    return newVal;
-  }
 }
