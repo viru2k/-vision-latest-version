@@ -260,7 +260,6 @@
                   }"
                   [options]="_nombreyapellido"
                   appendTo="body"
-                  defaultLabel="Filtrar"
                   *ngIf="col.field == 'nombreyapellido'"
                   (onChange)="dt.filter($event.value, col.field, 'in')"
                 ></p-multiSelect>
@@ -324,7 +323,6 @@
                   }"
                   [options]="_estado"
                   appendTo="body"
-                  defaultLabel="Filtrar"
                   *ngIf="col.field == 'estado'"
                   (onChange)="dt.filter($event.value, col.field, 'in')"
                 ></p-multiSelect>
@@ -336,7 +334,6 @@
                   }"
                   [options]="_dia_nombre"
                   appendTo="body"
-                  defaultLabel="Filtrar"
                   *ngIf="col.field == 'dia_nombre'"
                   (onChange)="dt.filter($event.value, col.field, 'in')"
                 ></p-multiSelect>

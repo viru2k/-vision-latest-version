@@ -19,6 +19,8 @@ import { PopupConvenioComponent } from '../popup-convenio/popup-convenio.compone
 import { Convenio } from '../../../models/convenio.model';
 import { PracticaService } from '../../../services/practica.service';
 import { PopupPacienteConsultaComponent } from './../popup-paciente-consulta/popup-paciente-consulta.component';
+import { ParametroService } from 'src/app/services/parametro.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-popup-operacion-cobro-registro-editar',
@@ -37,8 +39,10 @@ export class PopupOperacionCobroRegistroEditarComponent implements OnInit {
   popItemMedico: MedicoObraSocial;
   popItemObraSocial: ObraSocial;
   selectedForma: string;
+  loading = false;
 
   constructor(
+    private parametroService: ParametroService,
     public config: DynamicDialogConfig,
     private miServicio: PracticaService,
     private messageService: MessageService,
@@ -66,6 +70,7 @@ export class PopupOperacionCobroRegistroEditarComponent implements OnInit {
       obra_social_nombre: new FormControl(''),
       categorizacion: new FormControl(0),
       estado_liquidacion: new FormControl('PEN'),
+      _forma_pago: new FormControl(''),
       forma_pago: new FormControl(''),
       paciente_id: new FormControl(''),
       user_medico_id: new FormControl(''),
@@ -80,22 +85,21 @@ export class PopupOperacionCobroRegistroEditarComponent implements OnInit {
       internacion_tipo: new FormControl('A'),
     });
 
-    this.formasPago = [
+    /*     this.formasPago = [
       { name: 'TRANSFERENCIA', code: '1' },
       { name: 'EFECTIVO', code: '2' },
       { name: 'TARJETA - CREDITO', code: '3' },
       { name: 'TARJETA - DEBITO', code: '4' },
       { name: 'CHEQUE', code: '5' },
       { name: 'VARIOS', code: '6' },
-    ];
+    ]; */
   }
 
   ngOnInit() {
+    this.loadParametro();
     // this._fechaHoy = formatDate(this.updateDataForm.value.fecha_cobro, 'yyyy-MM-dd', 'en');
     console.log(this.config.data);
-    this.selectedForma = this.formasPago.find(
-      (x) => x.name === this.config.data.forma_pago
-    );
+
     this.updateDataForm.patchValue(this.config.data);
     this.updateDataForm.patchValue({
       nombreyapellido:
@@ -138,6 +142,21 @@ export class PopupOperacionCobroRegistroEditarComponent implements OnInit {
         console.log(this.updateDataForm.value);
       }
     });
+  }
+
+  private loadParametro(): void {
+    this.loading = true;
+    this.parametroService
+      .getParametroMetodoPagos()
+      .pipe(take(1))
+      .subscribe((resp) => {
+        console.log(resp);
+        this.formasPago = resp;
+        this.loading = false;
+        this.selectedForma = this.formasPago.find(
+          (x) => x.forma_pago === this.config.data.forma_pago
+        );
+      });
   }
 
   buscarObraSocial() {
@@ -248,9 +267,13 @@ export class PopupOperacionCobroRegistroEditarComponent implements OnInit {
   }
 
   actualizarDatos() {
-    let forma = this.updateDataForm.value.forma_pago['name'];
-    console.log(this.updateDataForm.value.forma_pago['name']);
-    this.updateDataForm.patchValue({ forma_pago: forma });
+    let forma = this.updateDataForm.value._forma_pago.forma_pago;
+    console.log(this.updateDataForm.value._forma_pago.forma_pago);
+    console.log(forma);
+
+    this.updateDataForm.patchValue({
+      forma_pago: forma,
+    });
     console.log(this.updateDataForm.value);
 
     try {

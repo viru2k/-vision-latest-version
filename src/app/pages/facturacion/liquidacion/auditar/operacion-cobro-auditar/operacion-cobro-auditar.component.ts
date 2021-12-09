@@ -1,17 +1,8 @@
 import { PopupOperacionCobroRegistroEditarComponent } from '../../../../../shared/popups/popup-operacion-cobro-registro-editar/popup-operacion-cobro-registro-editar.component';
 import { ObraSocial } from 'src/app/models/obra-social.model';
 
-import { ObraSocialService } from '../../../../../services/obra-social.service';
-import {
-  Component,
-  OnInit,
-  Output,
-  EventEmitter,
-  ViewChild,
-  PipeTransform,
-  ElementRef,
-  OnDestroy,
-} from '@angular/core';
+import { ParametroService } from './../../../../../services/parametro.service';
+import { Component, OnInit } from '@angular/core';
 import { ConvenioService } from '../../../../../services/convenio.service';
 import { Convenio } from '../../../../../models/convenio.model';
 
@@ -36,6 +27,7 @@ import { PopupCobroDistribucionEditarComponent } from '../../../../../shared/pop
 import { PopupOperacionCobroRegistroBuscarTodosComponent } from './../../../../../shared/popups/popup-operacion-cobro-registro-buscar-todos/popup-operacion-cobro-registro-buscar-todos.component';
 import { LiquidacionService } from './../../../../../services/liquidacion.service';
 import { Filter } from '../../../../../shared/filter';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-operacion-cobro-auditar',
@@ -86,6 +78,7 @@ export class OperacionCobroAuditarComponent implements OnInit {
   _forma_pago: any[] = [];
 
   constructor(
+    private parametroService: ParametroService,
     private miServicio: PracticaService,
     private liquidacionService: LiquidacionService,
     private messageService: MessageService,
@@ -94,14 +87,14 @@ export class OperacionCobroAuditarComponent implements OnInit {
     private dp: DecimalPipe,
     private filter: Filter
   ) {
-    this.formasPago = [
+    /*    this.formasPago = [
       { label: 'TRANSFERENCIA', value: 'TRANSFERENCIA' },
       { label: 'EFECTIVO', value: 'EFECTIVO' },
       { label: 'TARJETA - CREDITO', value: 'TARJETA - CREDITO' },
       { label: 'TARJETA - DEBITO', value: 'TARJETA - DEBITO' },
       { label: 'CHEQUE', value: 'CHEQUE' },
       { label: 'VARIOS', value: 'VARIOS' },
-    ];
+    ]; */
 
     this.nivel = [
       { label: '1', value: 1 },
@@ -176,6 +169,7 @@ export class OperacionCobroAuditarComponent implements OnInit {
 
   ngOnInit() {
     this.es = calendarioIdioma;
+    this.loadParametro();
     this.fechaDesde = new Date();
     this.fechaHasta = new Date();
     this.DateForm.patchValue({ fecha_desde: this.fechaDesde });
@@ -205,6 +199,17 @@ export class OperacionCobroAuditarComponent implements OnInit {
       '',
       0
     );
+  }
+
+  private loadParametro(): void {
+    this.loading = true;
+    this.parametroService
+      .getParametroMetodoPagos()
+      .pipe(take(1))
+      .subscribe((resp) => {
+        this.formasPago = resp;
+        this.loading = false;
+      });
   }
 
   actualizarFechaDesde(event) {

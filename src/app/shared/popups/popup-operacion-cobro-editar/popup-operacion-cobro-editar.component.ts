@@ -19,6 +19,8 @@ import { MedicoObraSocial } from '../../../models/medico-obrasocial.model';
 import { Convenio } from '../../../models/convenio.model';
 import { PracticaService } from '../../../services/practica.service';
 import { PopupPacienteConsultaComponent } from './../popup-paciente-consulta/popup-paciente-consulta.component';
+import { take } from 'rxjs';
+import { ParametroService } from 'src/app/services/parametro.service';
 
 @Component({
   selector: 'app-popup-operacion-cobro-editar',
@@ -28,6 +30,7 @@ import { PopupPacienteConsultaComponent } from './../popup-paciente-consulta/pop
 export class PopupOperacionCobroEditarComponent implements OnInit {
   es: any;
   formasPago: any[];
+  loading = false;
   updateDataForm: FormGroup;
   forma_pago: string;
   _fechaHoy: string;
@@ -38,6 +41,7 @@ export class PopupOperacionCobroEditarComponent implements OnInit {
   selectedForma: string;
 
   constructor(
+    private parametroService: ParametroService,
     public config: DynamicDialogConfig,
     private miServicio: PracticaService,
     private messageService: MessageService,
@@ -68,19 +72,20 @@ export class PopupOperacionCobroEditarComponent implements OnInit {
       operacion_cobro_observacion: new FormControl(''),
     });
 
-    this.formasPago = [
+    /*     this.formasPago = [
       { name: 'TRANSFERENCIA', code: '1' },
       { name: 'EFECTIVO', code: '2' },
       { name: 'TARJETA - CREDITO', code: '3' },
       { name: 'TARJETA - DEBITO', code: '4' },
       { name: 'CHEQUE', code: '5' },
       { name: 'VARIOS', code: '6' },
-    ];
+    ]; */
   }
 
   ngOnInit() {
     // this._fechaHoy = formatDate(this.updateDataForm.value.fecha_cobro, 'yyyy-MM-dd', 'en');
     console.log(this.config.data);
+    this.loadParametro();
     let _fecha: Date = new Date(this.config.data.operacion_cobro_fecha_cobro);
     let dateFix = new Date(_fecha); //.getTime() + (_fecha.getTimezoneOffset() * 60 * 1000));
     console.log(dateFix);
@@ -89,6 +94,18 @@ export class PopupOperacionCobroEditarComponent implements OnInit {
 
     //   this.updateDataForm.patchValue({fecha_cobro: this._fechaHoy});
     console.log(this.updateDataForm.value);
+  }
+
+  private loadParametro(): void {
+    this.loading = true;
+    this.parametroService
+      .getParametroMetodoPagos()
+      .pipe(take(1))
+      .subscribe((resp) => {
+        this.formasPago = resp;
+        this.selectedForma = this.formasPago[0];
+        this.loading = false;
+      });
   }
 
   buscarPaciente() {

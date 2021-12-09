@@ -226,8 +226,8 @@
             [style]="{ height: '28px', width: '100%', 'font-size': '10px' }"
             [options]="_obra_social_nombre"
             appendTo="body"
-            defaultLabel="Filtrar"
-            [showHeader]="false"
+            filter="true"
+            [showHeader]="true"
             *ngIf="col.field == 'obra_social_nombre'"
             (onChange)="dt.filter($event.value, col.field, 'in')"
           ></p-multiSelect>
@@ -271,7 +271,6 @@
             [style]="{ height: '28px', width: '100%', 'font-size': '10px' }"
             [options]="_medico_nombre"
             appendTo="body"
-            defaultLabel="Filtrar"
             *ngIf="col.field == 'medico_nombre'"
             (onChange)="dt.filter($event.value, col.field, 'in')"
           ></p-multiSelect>
@@ -349,7 +348,6 @@
             [style]="{ height: '28px', width: '100%', 'font-size': '10px' }"
             [options]="_forma_pago"
             appendTo="body"
-            defaultLabel="Filtrar"
             *ngIf="col.field == 'forma_pago'"
             (onChange)="dt.filter($event.value, col.field, 'in')"
           ></p-multiSelect>

@@ -255,7 +255,6 @@
                   }"
                   [options]="_tipo_moneda"
                   appendTo="body"
-                  defaultLabel="Filtrar"
                   *ngIf="col.field == 'tipo_moneda'"
                   (onChange)="dt.filter($event.value, col.field, 'in')"
                 ></p-multiSelect>
