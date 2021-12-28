@@ -1,7 +1,7 @@
 {
   "name": "vision-latest-version",
-  "version": "2.1.4",
-  "updateddate": "2021-12-07 06:55",
+  "version": "2.1.5",
+  "updateddate": "2021-12-09 15:55",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
@@ -31,6 +31,7 @@
     "fullcalendar": "^5.10.1",
     "hammerjs": "~2.0.8",
     "hover.css": "^2.3.2",
+    "html2canvas": "^1.3.3",
     "jquery": "^3.6.0",
     "jspdf": "^1.5.3",
     "jspdf-autotable": "^2.3.5",

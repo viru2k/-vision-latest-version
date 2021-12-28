@@ -126,7 +126,17 @@
           ></p-radioButton>
         </div>
       </div>
-      <div class="row col-3 float-right"></div>
+      <div class="row col-3 float-right" *ngIf="elementosPDF.length">
+        <div >
+          <qrcode
+            id="qr_code_new"
+            [qrdata]="elementosPDF[0]['cae']"
+            [width]="100"
+            [errorCorrectionLevel]="'M'"
+            [elementType]="'svg'"
+          ></qrcode>
+        </div>
+      </div>
     </div>
   </ng-template>
 

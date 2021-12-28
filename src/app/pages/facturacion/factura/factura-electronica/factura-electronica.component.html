@@ -412,4 +412,16 @@
   >
     Guardar factura
   </button>
+
+  <button (click)="testQr()">test qr</button>
+</div>
+<!-- <div id="qr_code"></div> -->
+<div *ngIf="CAE">
+  <qrcode 
+  id="qr_code_new"
+    [qrdata]="CAE"
+    [width]="50"
+    [errorCorrectionLevel]="'M'"
+    [elementType]="'svg'"
+  ></qrcode>
 </div>

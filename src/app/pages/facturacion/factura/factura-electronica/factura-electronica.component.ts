@@ -19,6 +19,7 @@ import { Paciente } from './../../../../models/paciente.model';
 import { PopupProveedorFindComponent } from '../../../../shared/popups/popup-proveedor-find/popup-proveedor-find.component';
 import { BuscarComprobanteAfipComponent } from '../../factura-electronica/popups/buscar-comprobante-afip/buscar-comprobante-afip.component';
 
+import * as html2canvas from 'html2canvas';
 @Component({
   selector: 'app-factura-electronica',
   templateUrl: './factura-electronica.component.html',
@@ -68,7 +69,7 @@ export class FacturaElectronicaComponent implements OnInit {
   nrodocumento: string = '0';
   observacion: string = '';
   cliente: string = '';
-  CAE: string;
+  CAE: string = null;
   CAE_vto: string;
   factura_nro: string;
   _factura_nro: string;
@@ -96,12 +97,16 @@ export class FacturaElectronicaComponent implements OnInit {
   peticion: string;
   es_afip: string;
   movimiento: FacturaElectronicaRenglon;
+
+  public myAngularxQrCode: string = null;
+
   constructor(
     private facturacionService: FacturacionService,
     public dialogService: DialogService,
     private messageService: MessageService,
     private cp: CurrencyPipe
   ) {
+    this.myAngularxQrCode = 'ItSoluionStuff.com';
     this.cols = [
       { field: 'descripcion', header: 'Descripción', width: '55%' },
       { field: 'cantidad', header: 'Cantidad', width: '10%' },
@@ -1462,4 +1467,23 @@ export class FacturaElectronicaComponent implements OnInit {
     this.cliente = '';
     this.getMedicosFacturan();
   }
+
+  testQr() {
+    this.myAngularxQrCode = 'ItSoluionStuff.com';
+    var pdf = new jsPDF();
+
+    pdf.setFontSize(15);
+    pdf.text('Crave Cookie', 43, 20);
+
+    pdf.setFontSize(10);
+    pdf.text('Scan For Menu', 43, 25);
+    let h2c: any = html2canvas;
+    h2c(document.querySelector('#qr_code_new')).then((canvas) => {
+      let imgData = canvas.toDataURL('image/png');
+      pdf.addImage(imgData, 'PNG', 15, 40);
+      window.open(pdf.output('bloburl'));
+    });
+  
+  }
+
 }
