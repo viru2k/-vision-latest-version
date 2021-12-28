@@ -1797,10 +1797,12 @@ export class OperacionCobroAfectarComponent implements OnInit {
       let total_lente: number = 0;
       let tiene_lente: boolean;
       for (a = 0; a < this.selecteditems.length; a++) {
-        var lente = this.selecteditems[a]['codigo'].substring(0, 4);
+        // QUITADO UN ESPACIO ERA  0,4
+        var lente = this.selecteditems[a]['codigo'].substring(0, 3);
+        console.log('LENTE CODIGO', lente);
         if (
           this.selecteditems[a]['obra_social_id'] === 1 &&
-          (lente === 'LIOF' ||
+          (lente === 'LIO' ||
             this.selecteditems[a]['codigo'] === '02.01.17' ||
             this.selecteditems[a]['codigo'] === '02.01.18' ||
             this.selecteditems[a]['codigo'] === '02.01.19')
@@ -1903,9 +1905,11 @@ export class OperacionCobroAfectarComponent implements OnInit {
 
         y_gastos = 80;
         for (a = 0; a < this.selecteditems.length; a++) {
+          // QUITADO UN ESPACIO ERA  0,4
+          var lente = this.selecteditems[a]['codigo'].substring(0, 3);
           if (
             this.selecteditems[a]['obra_social_id'] === 1 &&
-            (this.selecteditems[a]['codigo'] === 'LIOF05' ||
+            (lente === 'LIO' ||
               this.selecteditems[a]['codigo'] === '02.01.17' ||
               this.selecteditems[a]['codigo'] === '02.01.18' ||
               this.selecteditems[a]['codigo'] === '02.01.19')
