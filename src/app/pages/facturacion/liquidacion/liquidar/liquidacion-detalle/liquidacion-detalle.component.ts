@@ -188,9 +188,9 @@ export class LiquidacionDetalleComponent implements OnInit {
     ];
 
     this.columnsListadoCirugiaTodos = [
-      { title: 'Paciente', dataKey: 'paciente_nombre' },
+      { title: 'Paciente', dataKey: 'paciente_nombre', width: 100 },
       { title: 'Num. afiliado', dataKey: 'numero_afiliado' },
-      { title: 'Código', dataKey: 'codigo' },
+      { title: 'Cód.', dataKey: 'codigo' },
       { title: 'Descripción', dataKey: 'descripcion' },
       { title: 'Fecha', dataKey: 'fecha_cobro' },
       { title: 'Cant', dataKey: 'cantidad' },
@@ -198,7 +198,7 @@ export class LiquidacionDetalleComponent implements OnInit {
       { title: 'Honor.', dataKey: 'honorarios' },
       { title: 'Gastos', dataKey: 'gastos' },
       { title: 'Total', dataKey: 'valor_facturado' },
-      { title: 'Matricula', dataKey: 'matricula' },
+      { title: 'Matr.', dataKey: 'matricula' },
       { title: 'Médico', dataKey: 'medico_nombre' },
     ];
 
@@ -1847,16 +1847,6 @@ export class LiquidacionDetalleComponent implements OnInit {
       let practica = this.elementosPreFactura[i]['convenio_os_pmo_id'];
       let _complejidad_original: number = 0; // obtengo la complejidad del arreglo original
       for (j = 0; j < this.elementosPreFactura.length; j++) {
-        if (
-          Number(this.elementosPreFactura[j]['operacion_cobro_id']) === 36392
-        ) {
-          console.log(
-            'ASDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDDFFFFFFFGGGGGGGGGGGBBBBBBBBBBBBBBBBBBBBBBBBBBTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTTT'
-          );
-          console.log(
-            Number(this.elementosPreFactura[j]['operacion_cobro_id'])
-          );
-        }
         if (this.elementosPreFactura[j]['convenio_os_pmo_id'] === practica) {
           if (
             this.elementosPreFactura[j]['obra_social_practica_nombre'] ===
@@ -1876,13 +1866,10 @@ export class LiquidacionDetalleComponent implements OnInit {
                 this.selecteditems[0]['obra_social_nombre'] ===
                 'DOS - OBRA SOCIAL PROVINCIA'
               ) {
-                //  console.log('obra social honorarios');
                 this.elementosPreFactura[i]['honorarios'] =
                   this.elementosPreFactura[j][
                     'operacion_cobro_distribucion_total'
                   ];
-
-                //    console.log(this.elementosPreFactura[j]['complejidad']+' cirugia '+this.elementosPreFactura[j]['descripcion'] );
               } else {
                 let dato_honorario = this.elementosPreFactura[i];
                 // tslint:disable-next-line: max-line-length
@@ -1899,10 +1886,6 @@ export class LiquidacionDetalleComponent implements OnInit {
                   ] *
                     20) /
                   80;
-                // tslint:disable-next-line: max-line-length
-                // let t_hono =  this.cp.transform((((this.elementosPreFactura[j]['operacion_cobro_distribucion_total'])*20)/80), '', '', '1.2-2');
-                //  this.elementosPreFactura[i]['honorarios'] = t_hono;
-                //  console.log( 'coseguro honorarios '+  this.elementosPreFactura[i]['honorarios']);
                 if (
                   Number(this.elementosPreFactura[j]['operacion_cobro_id']) ===
                   36392
@@ -1943,12 +1926,7 @@ export class LiquidacionDetalleComponent implements OnInit {
                   this.elementosPreFactura[j][
                     'operacion_cobro_distribucion_total'
                   ];
-                //   total_gastos = total_gastos +Number( this.elementosPreFactura[i]['gastos']);
-                //   console.log(this.elementosPreFactura[j]['complejidad']+' cirugia '+this.elementosPreFactura[j]['descripcion'] );
               } else {
-                //  console.log('coseguro gastos');
-                //  this.elementosPreFactura[i]['categoria'] =  this.cp.transform(0, '', '', '1.2-2');
-
                 this.elementosPreFactura[i]['gastos'] = String(
                   (this.elementosPreFactura[j][
                     'operacion_cobro_distribucion_total'
@@ -2012,7 +1990,6 @@ export class LiquidacionDetalleComponent implements OnInit {
     }, []);
 
     console.log(filteredArr);
-    debugger;
     this.elementosFiltradosDos = filteredArr;
     let _complejidad: number = 0; // paso variable a validar
     let _total: number = 0;
@@ -2040,12 +2017,6 @@ export class LiquidacionDetalleComponent implements OnInit {
             Number(filteredArr[i]['categorizacion']);
           total_gastos = total_gastos + Number(filteredArr[i]['gastos']);
         }
-        // total_facturado =total_facturado+ Number(filteredArr[i]['valor_facturado'])+Number(filteredArr[i]['categorizacion']);
-        console.log(filteredArr[i]);
-        //  console.log('previo');
-        // console.log('gastos '+filteredArr[i]['gastos']);
-        // console.log('honorarios '+filteredArr[i]['honorarios']);
-        // console.log('categoria '+filteredArr[i]['categorizacion']);
 
         if (
           filteredArr[i]['gastos'] === undefined ||
@@ -2128,7 +2099,7 @@ export class LiquidacionDetalleComponent implements OnInit {
       if (!total_gastos) {
         total_gastos = 0;
       }
-      //  console.log(total_gastos);
+
       total_cantidad = total_cantidad + Number(filteredArr[i]['cantidad']);
     }
 
@@ -2136,86 +2107,73 @@ export class LiquidacionDetalleComponent implements OnInit {
 
     total_cantidad_impresion = this.dp.transform(total_cantidad, '1.0-0');
     if (this.selecteditems) {
-      var doc = new jsPDF('l');
+      var doc = new jsPDF();
 
       const pageSize = doc.internal.pageSize;
       const pageWidth = pageSize.width ? pageSize.width : pageSize.getWidth();
-      doc.addImage(logo_clinica, 'PNG', 10, 10, 40, 11, undefined, 'FAST');
       doc.setLineWidth(0.4);
-      doc.setFontSize(9);
-      doc.text('Clínica de la Visión', 60, 10, null, null, 'left');
       doc.setFontSize(6);
+
+      doc.text('Clínica de la Visión', 20, 35, null, null, 'left');
+
       doc.text(
-        'Periodo: ' + td + ' al ' + th,
-        pageSize.width - 60,
-        10,
-        null,
-        null
-      );
-      doc.line(60, 13, pageWidth - 15, 13);
-      doc.setFontSize(7);
-      let nivel_facturacion = this.elementosPreFactura[0]['nivel'].substring(
-        1,
-        2
-      );
-      if (nivel_facturacion === 'F') {
-        doc.text('FACTURACION', pageWidth - 60, 20, null, null, 'left');
-      }
-      if (nivel_facturacion === 'R') {
-        doc.text('REFACTURACION', pageWidth - 60, 20, null, null, 'left');
-      }
-      if (nivel_facturacion === 'C') {
-        doc.text('COMPLEMENTARIA', pageWidth - 60, 20, null, null, 'left');
-      }
-      if (nivel_facturacion === 'T') {
-        doc.text('TRANSPLANTE', pageWidth - 60, 20, null, null, 'left');
-      }
-      doc.text(
-        'Emitido : ' + _fechaEmision,
-        pageWidth - 60,
+        this.elementosPreFactura[0]['entidad_nombre'],
+        48,
         35,
         null,
         null,
         'left'
       );
-      doc.setFontSize(9);
-      doc.text('Presentación a Obras Sociales', 60, 20, null, null, 'left');
-      doc.setFontSize(7);
+
       doc.text(
-        this.elementosPreFactura[0]['entidad_nombre'],
+        this.elementosPreFactura[0]['obra_social_nombre'],
         60,
-        25,
-        null,
-        null,
-        'left'
-      );
-      doc.text(
-        'Obra social: ' + this.elementosPreFactura[0]['obra_social_nombre'],
-        60,
-        30,
+        35,
         null,
         null,
         'left'
       );
 
+      doc.text(
+        'Periodo: ' + td + ' al ' + th,
+        pageSize.width - 80,
+        35,
+        null,
+        null
+      );
+
+      doc.text(
+        'Emitido : ' + _fechaEmision,
+        pageWidth - 32,
+        35,
+        null,
+        null,
+        'left'
+      );
+      let nivel_facturacion = this.elementosPreFactura[0]['nivel'].substring(
+        1,
+        2
+      );
+      if (nivel_facturacion === 'F') {
+        doc.text('FACTURACION', pageWidth - 110, 35, null, null, 'left');
+      }
+      if (nivel_facturacion === 'R') {
+        doc.text('REFACTURACION', pageWidth - 110, 35, null, null, 'left');
+      }
+      if (nivel_facturacion === 'C') {
+        doc.text('COMPLEMENTARIA', pageWidth - 110, 35, null, null, 'left');
+      }
+      if (nivel_facturacion === 'T') {
+        doc.text('TRANSPLANTE', pageWidth - 110, 35, null, null, 'left');
+      }
+
+      doc.line(20, 38, pageWidth - 15, 38);
       console.log(filteredArr);
-
-      doc.setFontSize(8);
-      // doc.line(15, 35, pageWidth - 15, 35);
-
-      /* doc.autoTable(this.columnsListadoCirugiaTodos, filteredArr,
-    {
-        margin: {top: 38, right: 5,bottom:5, left: 5},
-        bodyStyles: {valign: 'top'},
-        showHead: 'firstPage',
-        styles: {fontSize: 6,cellWidth: 'wrap', rowPageBreak: 'auto', halign: 'justify',overflow: 'linebreak'},
-        columnStyles: {text: {cellWidth: 'auto'}}
-    }); */
 
       const totalPagesExp = '{total_pages_count_string}';
 
       doc.autoTable(this.columnsListadoCirugiaTodos, filteredArr, {
-        margin: { top: 38, right: 5, bottom: 5, left: 5 },
+        margin: { top: 42, bottom: 15, left: 20 },
         bodyStyles: { valign: 'top' },
         showHead: 'firstPage',
         styles: {
@@ -2225,13 +2183,27 @@ export class LiquidacionDetalleComponent implements OnInit {
           halign: 'justify',
           overflow: 'linebreak',
         },
-        columnStyles: { text: { cellWidth: 'auto' } },
+
+        //columnStyles: { text: { cellWidth: 'auto' } },
+        columnStyles: {
+          paciente_nombre: { columnWidth: 20 },
+          numero_afiliado: { columnWidth: 15, fontSize: 5 },
+          codigo: { columnWidth: 10, fontSize: 5 },
+          descripcion: { columnWidth: 30 },
+          fecha_cobro: { columnWidth: 15, fontSize: 5 },
+          cantidad: { columnWidth: 10 },
+          honorarios: { columnWidth: 15 },
+          gastos: { columnWidth: 15 },
+          valor_facturado: { columnWidth: 15 },
+          matricula: { columnWidth: 10 },
+          medico_nombre: { columnWidth: 20 },
+        },
         addPageContent: (data) => {
           let footerStr = 'Pagina ' + doc.internal.getNumberOfPages();
           if (typeof doc.putTotalPages === 'function') {
             footerStr = footerStr + ' de ' + totalPagesExp;
           }
-          doc.setFontSize(10);
+          doc.setFontSize(8);
           doc.text(
             footerStr,
             data.settings.margin.left,
@@ -2263,8 +2235,8 @@ export class LiquidacionDetalleComponent implements OnInit {
 
       doc.setFontSize(8);
       let finalY = doc.autoTable.previous.finalY;
-      doc.line(15, finalY + 3, pageWidth - 15, finalY + 3);
-      doc.text(15, finalY + 8, 'Cantidad : ' + total_cantidad_impresion);
+      doc.line(20, finalY + 3, pageWidth - 15, finalY + 3);
+      doc.text(20, finalY + 8, 'Cantidad : ' + total_cantidad_impresion);
       doc.text(
         pageWidth - 130,
         finalY + 8,

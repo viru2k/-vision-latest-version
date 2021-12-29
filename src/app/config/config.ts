@@ -1,3 +1,5 @@
+/***********SERVER DE PRUEBA LOCAL  ********************** */
+
 /* export const URL_SERVICIOS = 'http://localhost/api-vision/public/api/';
 export const config: SocketIoConfig = {
   url: 'http://localhost:4444',
@@ -6,18 +8,16 @@ export const config: SocketIoConfig = {
 export const URL_ARCHIVO = 'http://localhost/api-vision/public/';
 export const URL_ARCHIVO_SUBIDA = 'http://localhost/api-vision/public/api/'; */
 
-//export const config: SocketIoConfig = { url: 'https://communication-serivce.herokuapp.com/', options: {} };
+/***********SERVER DESPLEGADO  ********************** */
 
 export const URL_SERVICIOS = 'http://messageserver/api-vision/public/api/';
 export const config: SocketIoConfig = {
   url: 'http://messageserver:4444',
   options: {},
 };
-
 export const URL_ARCHIVO = 'http://messageserver/api-vision/public/';
 export const URL_ARCHIVO_SUBIDA = 'http://messageserver/api-vision/public/api/';
 
-//
 /***********SERVER DE PRUEBAS ********************** */
 
 //export const URL_SERVICIOS = 'http://messageserver/api-vision-prueba/public/api/';
@@ -25,9 +25,7 @@ export const URL_ARCHIVO_SUBIDA = 'http://messageserver/api-vision/public/api/';
 //export const URL_ARCHIVO = 'http://messageserver/api-vision/public/';
 //export const URL_ARCHIVO_SUBIDA = 'http://messageserver/api-vision/public/api/';
 
-export const VAPID_PUBLIC =
-  'BNOJyTgwrEwK9lbetRcougxkRgLpPs1DX0YCfA5ZzXu4z9p_Et5EnvMja7MGfCqyFCY4FnFnJVICM4bMUcnrxWg'; // SIN USO
-import { SocketIoModule, SocketIoConfig } from 'ngx-socket-io';
+import { SocketIoConfig } from 'ngx-socket-io';
 
 export const PARAMS = 'json=';
 
