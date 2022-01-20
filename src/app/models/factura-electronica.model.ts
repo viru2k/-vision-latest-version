@@ -1,5 +1,5 @@
-import { FacturaElectronicaRenglon } from "./factura-electronica-renglon.model";
-import { FacturaAlicuotaAsociada } from "./factura_alicuota_asociada.model";
+import { FacturaElectronicaRenglon } from './factura-electronica-renglon.model';
+import { FacturaAlicuotaAsociada } from './factura_alicuota_asociada.model';
 export class FacturaElectronica {
   id: string;
   factura_pto_vta_id: string;
@@ -95,4 +95,26 @@ export class FacturaElectronica {
     this.factura_comprobante_numero_credito =
       factura_comprobante_numero_credito;
   }
+}
+
+export interface FacturaElectronicaPdfBody {
+  elementosPDF: FacturaElectronicaRenglon[];
+  elementoMedicos: any;
+  elementoComprobante: any;
+  CAE: string;
+  CAE_vto: string;
+  subtotal: number;
+  subtotal_iva: number;
+  subtotal_excento: number;
+  total: number;
+  factura_nro: string;
+  pto_vta: string;
+  fecha: string;
+  fechaDesde: string;
+  fechaHasta: string;
+  nrodocumento: string;
+  elementoDocumento: number;
+  cliente: string;
+  elementoCondicionIva: number;
+  observacion: string;
 }

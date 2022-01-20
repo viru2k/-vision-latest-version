@@ -29,6 +29,7 @@
 
   <label class="ml-2 mr-2 mt-1">Fecha :</label>
   <p-calendar
+    [hideOnDateTimeSelect]="false"
     [inputStyle]="{ height: '35.1px' }"
     class="mr-2"
     [(ngModel)]="fecha"
@@ -175,6 +176,7 @@
   />
   <label class="mr-2 ml-2 mt-1">Período desde :</label>
   <p-calendar
+    [hideOnDateTimeSelect]="false"
     [inputStyle]="{ height: '35.1px' }"
     class="mr-2"
     [(ngModel)]="fechaDesde"
@@ -198,6 +200,7 @@
   </p-calendar>
   <label class="mr-2 mt-1">Período hasta :</label>
   <p-calendar
+    [hideOnDateTimeSelect]="false"
     [inputStyle]="{ height: '35.1px' }"
     class="mr-2"
     [(ngModel)]="fechaHasta"
@@ -416,10 +419,10 @@
   <button (click)="testQr()">test qr</button>
 </div>
 <!-- <div id="qr_code"></div> -->
-<div *ngIf="CAE">
-  <qrcode 
-  id="qr_code_new"
-    [qrdata]="CAE"
+<div>
+  <qrcode
+    id="qr_code_new"
+    [qrdata]="myAngularxQrCode"
     [width]="50"
     [errorCorrectionLevel]="'M'"
     [elementType]="'svg'"

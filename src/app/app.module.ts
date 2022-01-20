@@ -280,6 +280,7 @@ import { PopupMetodoPagoComponent } from './pages/mantenimiento/parametro/metodo
 import { PopupEstudiosComponent } from './pages/mantenimiento/parametro/estudios/popup-estudios/popup-estudios.component';
 import { PopupRecetaComponent } from './pages/mantenimiento/parametro/receta/popup-receta/popup-receta.component';
 import { LenteProveedorComponent } from './pages/mantenimiento/stock/lente-proveedor.component';
+import { PopupFacturaImpresionComponent } from './pages/facturacion/factura/factura-electronica/popup-factura-impresion/popup-factura-impresion.component';
 
 registerLocaleData(localeEsAR, 'es-Ar');
 
@@ -475,6 +476,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     NumberToWordsPipe,
     SignDirective,
     PositivePipe,
+    PopupFacturaImpresionComponent,
   ],
   imports: [
     GalleriaModule,
@@ -645,6 +647,7 @@ export function HttpLoaderFactory(httpClient: HttpClient) {
     PopupEstudiosComponent,
     PopupRecetaComponent,
     LenteComponent,
+    PopupFacturaImpresionComponent,
   ],
 
   providers: [

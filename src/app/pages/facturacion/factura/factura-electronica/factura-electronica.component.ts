@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FacturacionService } from './../../../../services/facturacion.service';
+import { FacturacionV2Service } from './../../../../services/facturacion-v2.service';
 declare const require: any;
 const jsPDF = require('jspdf');
 require('jspdf-autotable');
@@ -10,7 +10,10 @@ import { DialogService } from 'primeng-lts/dynamicdialog';
 import { MessageService } from 'primeng-lts/api';
 import { OverlayPanel } from 'primeng-lts/overlaypanel';
 import { FacturaElectronicaRenglon } from './../../../../models/factura-electronica-renglon.model';
-import { FacturaElectronica } from './../../../../models/factura-electronica.model';
+import {
+  FacturaElectronica,
+  FacturaElectronicaPdfBody,
+} from './../../../../models/factura-electronica.model';
 import { formatDate, CurrencyPipe } from '@angular/common';
 import { FacturaAlicuotaAsociada } from '../../../../models/factura_alicuota_asociada.model';
 import { PopupLiquidacionDetalleComponent } from '../../../../shared/popups/popup-liquidacion-detalle/popup-liquidacion-detalle.component';
@@ -20,6 +23,7 @@ import { PopupProveedorFindComponent } from '../../../../shared/popups/popup-pro
 import { BuscarComprobanteAfipComponent } from '../../factura-electronica/popups/buscar-comprobante-afip/buscar-comprobante-afip.component';
 
 import * as html2canvas from 'html2canvas';
+import { PopupFacturaImpresionComponent } from './popup-factura-impresion/popup-factura-impresion.component';
 @Component({
   selector: 'app-factura-electronica',
   templateUrl: './factura-electronica.component.html',
@@ -43,7 +47,8 @@ export class FacturaElectronicaComponent implements OnInit {
   selecteditems: FacturaElectronicaRenglon = null;
   elementoAlicuota: number = null;
   elementoMedicos: any = null;
-  elementoComprobante: number = null;
+  //elementoComprobante: number = null;
+  elementoComprobante: any = null;
   elementoComprobanteCredito: number = 0;
   elementoConcepto: number = null;
   elementoDocumento: number = null;
@@ -101,7 +106,7 @@ export class FacturaElectronicaComponent implements OnInit {
   public myAngularxQrCode: string = null;
 
   constructor(
-    private facturacionService: FacturacionService,
+    private facturacionService: FacturacionV2Service,
     public dialogService: DialogService,
     private messageService: MessageService,
     private cp: CurrencyPipe
@@ -346,7 +351,7 @@ export class FacturaElectronicaComponent implements OnInit {
           this.loading = false;
           this.peticion = '';
           console.log(this.elementosComprobante);
-          //this.elementoComprobante = this.elementosComprobante[3];
+          //this.elementoComprobante = this.elementoComprobante[3];
           this.elementoComprobante = this.elementosComprobante.find(
             (x) => x.id === this.elementoMedicos['factura_comprobante_id']
           );
@@ -632,7 +637,7 @@ export class FacturaElectronicaComponent implements OnInit {
           /*                 SI ES RECIBO , NO ES OFICIAL Y NO TRAE CAE                 */
           /* -------------------------------------------------------------------------- */
           //if(facturaElectronica['factura_comprobante_id']=== 15){
-          if (this.es_afip === 'NO') {
+          /*   if (this.es_afip === 'NO') {
             this.CAE = '';
             this.CAE_vto = '';
             this._factura_nro = resp;
@@ -649,27 +654,26 @@ export class FacturaElectronicaComponent implements OnInit {
                 this.generarPDF();
               },
             });
-          } else {
-            this.CAE = resp[0]['cae'];
-            this.CAE_vto = resp[0]['cae_vto'];
-            this.factura_nro = this.padLeft(
-              String(resp[0]['factura_numero']),
-              '0',
-              8
-            );
-            swal({
-              toast: false,
-              type: 'success',
-              text: 'confeccionando PDF',
-              title:
-                'FACTURA Nº ' + this.factura_nro + ' GENERADA CORRETAMENTE',
-              showConfirmButton: false,
-              timer: 4000,
-              onClose: () => {
-                this.generarPDF();
-              },
-            });
-          }
+          } else { */
+          this.CAE = resp[0]['cae'];
+          this.CAE_vto = resp[0]['cae_vto'];
+          this.factura_nro = this.padLeft(
+            String(resp[0]['factura_numero']),
+            '0',
+            8
+          );
+          swal({
+            toast: false,
+            type: 'success',
+            text: 'confeccionando PDF',
+            title: 'FACTURA Nº ' + this.factura_nro + ' GENERADA CORRETAMENTE',
+            showConfirmButton: false,
+            timer: 4000,
+            onClose: () => {
+              this.generarPDF();
+            },
+          });
+          // }
 
           //   this.generarPDF();
         },
@@ -803,7 +807,7 @@ export class FacturaElectronicaComponent implements OnInit {
   obtenerUltimaFactura() {
     this.loading = true;
     this.peticion = 'Obteniendo ultima factura y punto de venta';
-    console.log(this.elementoComprobante);
+    console.log(this.elementosComprobante);
     this._comprobante_nombre = this.comprobante_id =
       this.elementoComprobante['descripcion'];
     this.comprobante_id = this.elementoComprobante['id'];
@@ -1185,263 +1189,47 @@ export class FacturaElectronicaComponent implements OnInit {
   }
 
   generarPDF() {
-    // GENERO EL FORMATO DE LOS COBROS
+    const facturaElectonicaData: FacturaElectronicaPdfBody = {
+      elementosPDF: this.elementos,
+      elementoMedicos: this.elementoMedicos,
+      elementoComprobante: this.elementoComprobante,
+      CAE: this.CAE,
+      CAE_vto: this.CAE_vto,
+      subtotal: this.subtotal,
+      subtotal_iva: this.subtotal_iva,
+      subtotal_excento: this.subtotal_excento,
+      total: this.total,
+      factura_nro: this.factura_nro,
+      pto_vta: this.pto_vta,
+      fecha: formatDate(this.fecha, 'dd/MM/yyyy', 'en'),
+      fechaDesde: formatDate(this.fechaDesde, 'dd/MM/yyyy', 'en'),
+      fechaHasta: formatDate(this.fechaHasta, 'dd/MM/yyyy', 'en'),
+      nrodocumento: this.nrodocumento,
+      elementoDocumento: this.elementoDocumento,
+      cliente: this.cliente,
+      elementoCondicionIva: this.elementoCondicionIva,
+      observacion: this.observacion,
+    };
 
-    this.elementosPDF = this.elementos;
-    let i = 0;
-    for (i = 0; i < this.elementosPDF.length; i++) {
-      this.elementosPDF[i]['alicuota'] = this.cp.transform(
-        this.elementosPDF[i]['alicuota'],
-        '',
-        'symbol-narrow',
-        '1.2-2'
-      );
-      this.elementosPDF[i]['iva'] = this.cp.transform(
-        this.elementosPDF[i]['iva'],
-        '',
-        'symbol-narrow',
-        '1.2-2'
-      );
-      this.elementosPDF[i]['precio_unitario'] = this.cp.transform(
-        this.elementosPDF[i]['precio_unitario'],
-        '',
-        'symbol-narrow',
-        '1.2-2'
-      );
-      this.elementosPDF[i]['total_renglon'] = this.cp.transform(
-        this.elementosPDF[i]['total_renglon'],
-        '',
-        'symbol-narrow',
-        '1.2-2'
-      );
-      this.elementosPDF[i]['total_sin_iva'] = this.cp.transform(
-        this.elementosPDF[i]['total_sin_iva'],
-        '',
-        'symbol-narrow',
-        '1.2-2'
-      );
-    }
-
-    this._fecha = formatDate(this.fecha, 'dd/MM/yyyy', 'en');
-    const inicio_actividades = formatDate(
-      this.elementoMedicos['fecha_matricula'],
-      'dd/MM/yyyy',
-      'en'
-    );
-    var doc = new jsPDF();
-    /** valores de la pagina**/
-    const pageSize = doc.internal.pageSize;
-    const pageWidth = pageSize.width ? pageSize.width : pageSize.getWidth();
-    const pageHeight = pageSize.height ? pageSize.height : pageSize.getHeight();
-    //borde contenedor
-    doc.setLineWidth(0.3);
-    doc.setDrawColor(207, 216, 220);
-    doc.line(10, 10, pageWidth - 10, 10); //linea superior horizontal
-    doc.line(10, 10, 10, 50); // linea vertical izquierda
-    doc.line(pageWidth - 10, 10, pageWidth - 10, 50); // linea vertical derecha
-    doc.line(10, 50, pageWidth - 10, 50); //linea inferior horizontal
-
-    //borde factura letra
-    doc.line(pageWidth / 2 - 6, 10, pageWidth / 2 - 6, 23); // linea vertical izquierda
-    doc.line(pageWidth / 2 + 6, 10, pageWidth / 2 + 6, 23); // linea vertical derecha
-    doc.line(pageWidth / 2 - 6, 23, pageWidth / 2 + 6, 23); //linea inferior horizontal
-
-    //borde fecha emision desde hasta
-
-    doc.line(10, 55, pageWidth - 10, 55); //linea superior horizontal
-    doc.line(10, 55, 10, 63); // linea vertical izquierda
-    doc.line(pageWidth - 10, 55, pageWidth - 10, 63); // linea vertical derecha
-    doc.line(10, 63, pageWidth - 10, 63); //linea inferior horizontal
-
-    // borde datos del clinete
-
-    doc.line(10, 65, pageWidth - 10, 65); //linea superior horizontal
-    doc.line(10, 65, 10, 90); // linea vertical izquierda
-    doc.line(pageWidth - 10, 65, pageWidth - 10, 90); // linea vertical derecha
-    doc.line(10, 90, pageWidth - 10, 90); //linea inferior horizontal
-
-    doc.line(10, pageHeight - 25, 10, pageHeight - 15); // linea vertical izquierda
-    doc.line(pageWidth - 10, pageHeight - 25, pageWidth - 10, pageHeight - 15); // linea vertical derecha
-    doc.line(10, pageHeight - 25, pageWidth - 10, pageHeight - 25); //linea superior horizontal
-    doc.line(10, pageHeight - 15, pageWidth - 10, pageHeight - 15); //linea inferior horizontal
-
-    // linea divisoria
-    doc.line(pageWidth / 2, 23, pageWidth / 2, 50);
-    doc.setFontSize(19);
-    doc.setFontStyle('bold');
-    doc.text(this.elementoComprobante['letra'], pageWidth / 2 - 2.5, 17);
-    doc.setFontStyle('normal');
-    doc.setFontSize(6);
-    doc.text(
-      'COD. ' + this.elementoComprobante['comprobante_codigo'],
-      pageWidth / 2 - 4.5,
-      21
-    );
-    doc.addImage(logo_clinica, 'PNG', 15, 12, 60.06, 12.87, undefined, 'FAST');
-    doc.setFontSize(9);
-
-    doc.text(this.elementoMedicos['nombreyapellido'], 15, 35);
-    doc.setFontStyle('normal');
-    doc.setFontSize(9);
-    doc.text(this.elementoMedicos['domicilio'], 15, 40);
-    doc.text(this.elementoMedicos['categoria_iva'], 15, 45);
-    // izquierda
-    doc.setFontSize(9);
-
-    /* -------------------------------------------------------------------------- */
-    /*                               DATOS DEL EMISO                              */
-    /* -------------------------------------------------------------------------- */
-    doc.setFontStyle('bold');
-    doc.setFontSize(11);
-    doc.text(this.elementoComprobante['descripcion'], pageWidth / 2 + 20, 20);
-    doc.text(
-      'Comprobante: ' + this.pto_vta + ' - ' + this.factura_nro,
-      pageWidth / 2 + 20,
-      25
-    );
-    doc.setFontStyle('normal');
-    doc.setFontSize(9);
-    doc.text('Fecha Emisión: ' + this._fecha, pageWidth / 2 + 20, 30);
-    doc.text(
-      'C.U.I.T.: ' + this.elementoMedicos['cuit'],
-      pageWidth / 2 + 20,
-      35
-    );
-    doc.text(
-      'Ingresos brutos: ' + this.elementoMedicos['ing_brutos'],
-      pageWidth / 2 + 20,
-      40
-    );
-    doc.text(
-      'Inicio de actividades: ' + inicio_actividades,
-      pageWidth / 2 + 20,
-      45
-    );
-    doc.setLineWidth(0.4);
-
-    /* -------------------------------------------------------------------------- */
-    /*                              PERIODO DE FECHAS                             */
-    /* -------------------------------------------------------------------------- */
-
-    this._fechaDesde = formatDate(this.fechaDesde, 'yyyy-MM-dd', 'en');
-    this._fechaHasta = formatDate(this.fechaHasta, 'yyyy-MM-dd', 'en');
-    doc.text(
-      'Período Facturado   Desde: ' +
-        formatDate(this.fechaDesde, 'dd/MM/yyyy', 'en'),
-      15,
-      60
-    );
-    doc.text(
-      'Hasta: ' + formatDate(this.fechaHasta, 'dd/MM/yyyy', 'en'),
-      pageWidth / 2,
-      60
-    );
-
-    /* -------------------------------------------------------------------------- */
-    /*                              DATOS DEL CLIENTE                             */
-    /* -------------------------------------------------------------------------- */
-
-    doc.text(
-      this.elementoDocumento['descripcion'] + ' : ' + this.nrodocumento,
-      15,
-      73
-    );
-    doc.text('Cliente: ' + this.cliente, 60, 73);
-    doc.text(
-      'Condición frente al IVA: ' + this.elementoCondicionIva['categoria_iva'],
-      15,
-      78
-    );
-    doc.text('Observación: ' + this.observacion, 15, 83);
-
-    /* -------------------------------------------------------------------------- */
-    /*                             DATOS DE LA FACTURA                            */
-    /* -------------------------------------------------------------------------- */
-
-    doc.setFontSize(10);
-    doc.setFontStyle('bold');
-    doc.text(
-      'Subtotal: ' +
-        this.cp.transform(this.subtotal, '', 'symbol-narrow', '1.2-2'),
-      15,
-      pageHeight - 18
-    );
-    if (
-      this.elementoComprobante['id'] === 6 ||
-      this.elementoComprobante['id'] === 11
-    ) {
-    } else {
-      doc.text(
-        'Imp. IVA: ' +
-          this.cp.transform(this.subtotal_iva, '', 'symbol-narrow', '1.2-2'),
-        75,
-        pageHeight - 18
-      );
-    }
-
-    doc.text(
-      'Total: ' + this.cp.transform(this.total, '', 'symbol-narrow', '1.2-2'),
-      pageWidth - 50,
-      pageHeight - 18
-    );
-    // PIE DE LA FACTURA
-    doc.text('CAE: ' + this.CAE, 15, pageHeight - 10);
-    if (this.CAE === '') {
-    } else {
-      doc.text(
-        'Fecha de vencimiento de CAE: ' +
-          formatDate(this.CAE_vto, 'dd/MM/yyyy', 'en'),
-        pageWidth / 2 + 20,
-        pageHeight - 10
-      );
-    }
-
-    doc.setFontStyle('normal');
-    console.log(this.elementosPDF);
-
-    /* -------------------------------------------------------------------------- */
-    /*              SI ES FACTURA B O SIMILAR OMITO EL VALOR DEL IVA              */
-    /* -------------------------------------------------------------------------- */
-
-    if (
-      this.elementoComprobante['id'] === 6 ||
-      this.elementoComprobante['id'] === 7 ||
-      this.elementoComprobante['id'] === 8 ||
-      this.elementoComprobante['id'] === 11 ||
-      this.elementoComprobante['id'] === 12 ||
-      this.elementoComprobante['id'] === 13
-    ) {
-      for (i = 0; i < this.elementosPDF.length; i++) {
-        this.elementosPDF[i]['alicuota'] = '';
-        this.elementosPDF[i]['precio_unitario'] =
-          this.elementosPDF[i]['total_renglon'];
-        this.elementosPDF[i]['total_sin_iva'] =
-          this.elementosPDF[i]['total_renglon'];
-        this.elementosPDF[i]['iva'] = '0';
-        this.elementosPDF[i]['alicuota_descripcion'] = '';
-      }
-    }
-
-    doc.autoTable(this.columns, this.elementosPDF, {
-      margin: { vertical: 95, right: 0, horizontal: -10 },
-      bodyStyles: { valign: 'top' },
-      styles: {
-        fontSize: 10,
-        cellWidth: 'wrap',
-        rowPageBreak: 'auto',
-        halign: 'justify',
-        overflow: 'linebreak',
-      },
-      columnStyles: {
-        descripcion: { columnWidth: 88 },
-        cantidad: { columnWidth: 10 },
-        precio_unitario: { columnWidth: 25 },
-        alicuota_descripcion: { columnWidth: 12 },
-        iva: { columnWidth: 25 },
-        total_renglon: { columnWidth: 25 },
-      },
+    let data = facturaElectonicaData;
+    const ref = this.dialogService.open(PopupFacturaImpresionComponent, {
+      data,
+      header: 'GENERANDO PDF',
+      width: '250px',
+      height: '250px',
     });
-    window.open(doc.output('bloburl'));
+
+    ref.onClose.subscribe((PopupFacturaImpresionComponent: any) => {
+      if (PopupFacturaImpresionComponent) {
+        console.log(PopupFacturaImpresionComponent);
+      }
+    });
+
+    // GENERO EL FORMATO DE LOS COBROS
+    // CODIGO  QUITADO PARA PRUEBAS
+
+    // FIN CODIGO QUITADO
+
     this.limpiarDatos();
   }
 
@@ -1478,12 +1266,12 @@ export class FacturaElectronicaComponent implements OnInit {
     pdf.setFontSize(10);
     pdf.text('Scan For Menu', 43, 25);
     let h2c: any = html2canvas;
+    const pageSize = pdf.internal.pageSize;
+    const pageWidth = pageSize.width ? pageSize.width : pageSize.getWidth();
     h2c(document.querySelector('#qr_code_new')).then((canvas) => {
       let imgData = canvas.toDataURL('image/png');
-      pdf.addImage(imgData, 'PNG', 15, 40);
+      pdf.addImage(imgData, 'PNG', pageWidth / 2 - 30, 40);
       window.open(pdf.output('bloburl'));
     });
-  
   }
-
 }
