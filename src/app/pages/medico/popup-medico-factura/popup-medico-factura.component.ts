@@ -1,7 +1,5 @@
 import { DialogService, DynamicDialogConfig } from 'primeng-lts/dynamicdialog';
 import { AlertServiceService } from './../../../services/alert-service.service';
-import { UserService } from './../../../services/user.service';
-import { MessageService } from 'primeng-lts/api';
 import { Component, OnInit } from '@angular/core';
 import { FacturacionService } from '../../../services/facturacion.service';
 
@@ -22,14 +20,12 @@ export class PopupMedicoFacturaComponent implements OnInit {
   selectedModulos: any[];
   mensaje: string;
 
-  // tslint:disable-next-line: max-line-length
   constructor(
     public config: DynamicDialogConfig,
-    private userService: UserService,
+
     private facturacionService: FacturacionService,
     private alertServiceService: AlertServiceService,
-    public dialogService: DialogService,
-    private messageService: MessageService
+    public dialogService: DialogService
   ) {}
 
   ngOnInit() {
@@ -106,12 +102,12 @@ export class PopupMedicoFacturaComponent implements OnInit {
   }
 
   borrar(e: any) {
-    console.log(e.value);
+    console.log(e);
 
     this.loading = true;
     try {
       this.facturacionService
-        .delFacturaMedico(e.value.factura_comprobante_medico_id)
+        .delFacturaMedico(e.factura_comprobante_medico_id)
         .subscribe(
           (resp) => {
             this.loadlistFacturaUsuario();

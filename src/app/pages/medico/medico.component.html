@@ -102,9 +102,14 @@
         <td style="width: 10%">{{ elementos.telefono_cel }}</td>
         <td style="width: 10%">{{ elementos.cuit }}</td>
         <td style="width: 10%">{{ elementos.ing_brutos }}</td>
-        <td style="width: 10%">
+        <td style="width: 8%">
           <a (click)="editarPermiso(elementos)" class="icon-hover">
             <i class="far fa-list-alt icono-success fa-lg"></i
+          ></a>
+        </td>
+        <td style="width: 8%">
+          <a (click)="showDialogToUpdate(elementos)" class="icon-hover">
+            <i class="fas fa-address-book icono-info fa-lg"></i
           ></a>
         </td>
       </tr>

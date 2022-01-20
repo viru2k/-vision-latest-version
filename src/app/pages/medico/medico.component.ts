@@ -51,7 +51,8 @@ export class MedicoComponent implements OnInit {
       { field: 'telefono_cel', header: 'Telefono celular', width: '10%' },
       { field: 'cuit', header: 'CUIT', width: '10%' },
       { field: 'ing_brutos', header: 'Ingresos brutos', width: '10%' },
-      { field: '', header: 'Permisos', width: '10%' },
+      { field: '', header: '', width: '8%' },
+      { field: '', header: '', width: '8%' },
     ];
 
     this.columns = [
@@ -132,27 +133,27 @@ export class MedicoComponent implements OnInit {
   showDialogToUpdate(event) {
     console.log(event);
     this.popItem = new Medico(
-      event.data.apellido,
-      event.data.nombre,
-      event.data.domicilio,
-      event.data.fecha_matricula,
-      event.data.telefono,
-      event.data.telefono_cel,
-      event.data.email,
-      event.data.email_laboral,
-      event.data.cuit,
-      event.data.ing_brutos,
-      event.data.usuario_id,
-      event.data.id,
-      event.data.ObraSocial,
-      event.data.codgo_old,
-      event.data.categoria_iva_id,
-      event.data.factura_documento_comprador_id,
-      event.data.punto_vta_id,
-      event.data.factura_comprobante_id,
-      event.data.fecha_alta_afip,
-      event.data.factura_key,
-      event.data.factura_crt
+      event.apellido,
+      event.nombre,
+      event.domicilio,
+      event.fecha_matricula,
+      event.telefono,
+      event.telefono_cel,
+      event.email,
+      event.email_laboral,
+      event.cuit,
+      event.ing_brutos,
+      event.usuario_id,
+      event.id,
+      event.ObraSocial,
+      event.codgo_old,
+      event.categoria_iva_id,
+      event.factura_documento_comprador_id,
+      event.punto_vta_id,
+      event.factura_comprobante_id,
+      event.fecha_alta_afip,
+      event.factura_key,
+      event.factura_crt
     );
 
     let data: any;

@@ -21,7 +21,7 @@
             >
               <i class="fas fa-trash fa-sm"></i>
             </button>
-            <label style="font-size: 10px"> {{ elemento.label }}</label>
+            <label style="font-size: 10px"> {{ elemento.descripcion }}</label>
           </div>
         </ng-template>
       </p-listbox>
@@ -41,7 +41,7 @@
         >
           <p-header> Comprobantes disponibles </p-header>
           <ng-template let-elemento pTemplate="item">
-            <label style="font-size: 10px"> {{ elemento.label }}</label>
+            <label style="font-size: 10px"> {{ elemento.descripcion }}</label>
           </ng-template>
         </p-listbox>
       </p-scrollPanel>
