@@ -105,6 +105,7 @@
           <label>Fecha de nacimiento</label>
         </div>
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="fecha_nacimiento"
           [locale]="es"
           dateFormat="dd/mm/yy"

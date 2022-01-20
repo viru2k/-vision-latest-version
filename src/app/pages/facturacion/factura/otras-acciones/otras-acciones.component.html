@@ -17,6 +17,7 @@
       <div class="btn-group" role="group">
         <span class="pr-1 pt-1"><label>Desde:</label></span>
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           [inputStyle]="{ height: '29.1px' }"
           class="mr-2"
           formControlName="fecha_desde"
@@ -40,6 +41,7 @@
         </p-calendar>
         <span class="pr-1 pt-1"><label>Hasta:</label></span>
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           [inputStyle]="{ height: '29.1px' }"
           class="mr-2"
           formControlName="fecha_hasta"
@@ -127,7 +129,7 @@
         </div>
       </div>
       <div class="row col-3 float-right" *ngIf="elementosPDF.length">
-        <div >
+        <div>
           <qrcode
             id="qr_code_new"
             [qrdata]="elementosPDF[0]['cae']"

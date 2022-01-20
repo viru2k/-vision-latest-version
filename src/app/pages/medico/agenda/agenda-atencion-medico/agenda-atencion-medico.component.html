@@ -7,15 +7,7 @@
         title="Pacientes derivados a recepción"
         (click)="verListadoEspera()"
         tooltip
-        class="
-          fas
-          fa-user-check
-          icon-color-green-light
-          pointer
-          my-hover
-          nav-links
-          fa-2x
-        "
+        class="fas fa-user-check icon-color-green-light pointer my-hover nav-links fa-2x"
         pInputText
         pTooltip="Pacientes en espera"
         tooltipPosition="top"
@@ -30,15 +22,7 @@
         data-placement="top"
         title="Pacientes derivados a asesoramiento"
         (click)="verListadoEspera()"
-        class="
-          fas
-          fa-user-astronaut
-          icon-color-red-light
-          pointer
-          my-hover
-          nav-links
-          fa-2x
-        "
+        class="fas fa-user-astronaut icon-color-red-light pointer my-hover nav-links fa-2x"
         pInputText
         pTooltip="Pacientes en espera"
         tooltipPosition="top"
@@ -51,6 +35,7 @@
       <form [formGroup]="DateForm">
         <div class="btn-group mt-3 ml-2" role="group">
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             class="mr-2"
             formControlName="fechaHoy"
             (onSelect)="actualizarFecha($event)"
@@ -357,12 +342,7 @@
             <td style="width: 4%" #mirow>
               <a (click)="verMotivo($event, op, agendaTurno)">
                 <i
-                  class="
-                    pointer
-                    fas
-                    fa-user-astronaut fa-2x
-                    icon-color-orange-light
-                  "
+                  class="pointer fas fa-user-astronaut fa-2x icon-color-orange-light"
                   *ngIf="agendaTurno.es_observacion === 'CONTROL PREQUIRURGICO'"
                 ></i
               ></a>
@@ -406,12 +386,7 @@
               ></a>
               <a (click)="verMotivo($event, op, agendaTurno)">
                 <i
-                  class="
-                    pointer
-                    far
-                    fa-address-card fa-2x
-                    icon-color-green-light
-                  "
+                  class="pointer far fa-address-card fa-2x icon-color-green-light"
                   *ngIf="agendaTurno.es_observacion === 'SOLICITUD DE TURNO'"
                 ></i
               ></a>

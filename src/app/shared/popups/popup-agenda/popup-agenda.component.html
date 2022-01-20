@@ -8,6 +8,7 @@
       <form [formGroup]="DateForm">
         <div class="btn-group" role="group">
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             class="mr-2"
             formControlName="fechaHoy"
             (onSelect)="actualizarFecha($event)"

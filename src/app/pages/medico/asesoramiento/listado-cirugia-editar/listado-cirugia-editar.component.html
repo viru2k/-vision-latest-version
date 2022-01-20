@@ -11,6 +11,7 @@
     <div class="input-group input-group-sm">
       <form [formGroup]="DateForm">
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="fechaHoy"
           (onSelect)="actualizarFecha($event)"
           [locale]="es"
@@ -64,6 +65,7 @@
     <div class="input-group input-group-sm mr-2 ml-2">
       <form [formGroup]="DateForm">
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="fechaDesde"
           (onSelect)="actualizarFechaDesde($event)"
           [locale]="es"
@@ -89,6 +91,7 @@
     <div class="input-group input-group-sm mr-2 d-flex align-items-center">
       <form [formGroup]="DateForm">
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="fechaHasta"
           (onSelect)="actualizarFechaHasta($event)"
           [locale]="es"

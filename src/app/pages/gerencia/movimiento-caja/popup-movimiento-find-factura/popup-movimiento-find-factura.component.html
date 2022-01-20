@@ -16,6 +16,7 @@
 
     <span class="pr-1 pt-1"><label>Desde:</label></span>
     <p-calendar
+      [hideOnDateTimeSelect]="false"
       [inputStyle]="{ height: '29.1px' }"
       class="mr-2"
       [(ngModel)]="fechaDesde"
@@ -39,6 +40,7 @@
     </p-calendar>
     <span class="pr-1 pt-1"><label>Hasta:</label></span>
     <p-calendar
+      [hideOnDateTimeSelect]="false"
       [inputStyle]="{ height: '29.1px' }"
       class="mr-2"
       [(ngModel)]="fechaHasta"

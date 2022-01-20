@@ -5,6 +5,7 @@
   >
     <form [formGroup]="DateForm">
       <p-calendar
+ [hideOnDateTimeSelect] ="false" 
         formControlName="fechaHoy"
         (onSelect)="actualizarFecha($event)"
         [locale]="es"

@@ -93,6 +93,7 @@
         </div>
 
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="operacion_cobro_fecha_cobro"
           [showTime]="true"
           (onSelect)="actualizarFecha($event)"

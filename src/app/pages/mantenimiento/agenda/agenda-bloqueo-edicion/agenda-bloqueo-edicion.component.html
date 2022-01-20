@@ -5,6 +5,7 @@
   <div class="row container-fluid animated fadeIn slow">
     <div class="d-flex justify-content-start flex-column">
       <p-calendar
+        [hideOnDateTimeSelect]="false"
         class="pb-2"
         [ngModel]="fechaHoy"
         (onSelect)="actualizarFecha($event)"

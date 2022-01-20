@@ -20,6 +20,7 @@
           </div>
           <div class="row">
             <p-calendar
+              [hideOnDateTimeSelect]="false"
               formControlName="fechaHoy"
               [showTime]="true"
               (onSelect)="actualizarFecha($event)"

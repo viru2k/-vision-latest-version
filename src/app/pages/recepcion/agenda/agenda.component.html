@@ -4,6 +4,7 @@
       <div class="d-flex justify-content-start ml-2">
         <form [formGroup]="DateForm" class="m-2">
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             formControlName="fechaHoy"
             (onSelect)="actualizarFecha($event)"
             [locale]="es"
@@ -354,12 +355,7 @@
         <td style="width: 4%">
           <a (click)="verMotivo($event, op, agendaTurno)">
             <i
-              class="
-                pointer
-                fas
-                fa-user-astronaut fa-2x
-                icon-color-orange-light
-              "
+              class="pointer fas fa-user-astronaut fa-2x icon-color-orange-light"
               *ngIf="agendaTurno.es_observacion === 'CONTROL PREQUIRURGICO'"
             ></i
           ></a>

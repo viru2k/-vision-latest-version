@@ -31,6 +31,7 @@
               <label>Fecha de matriculación</label>
             </div>
             <p-calendar
+              [hideOnDateTimeSelect]="false"
               formControlName="fecha_ingreso"
               [locale]="es"
               dateFormat="dd/mm/yy"

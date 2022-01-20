@@ -8,6 +8,7 @@
         <div class="d-flex align-items-center mr-1 ml-1">
           <span class="pr-1 pt-1"><h6>Buscar lentes Desde:</h6></span>
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             [inputStyle]="{ height: '29.1px' }"
             [showTime]="true"
             class="mr-2"
@@ -36,6 +37,7 @@
           </p-calendar>
           <span class="pr-1 pt-1"><h6>Hasta:</h6></span>
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             [inputStyle]="{ height: '29.1px' }"
             [showTime]="true"
             class="mr-2"

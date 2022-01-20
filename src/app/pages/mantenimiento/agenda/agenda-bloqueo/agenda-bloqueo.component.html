@@ -7,8 +7,10 @@
           <h6 class="pt-1">Bloquear agenda</h6>
         </div>
         <div class="col-5 float-left">
-          <!--       <p-calendar [(ngModel)]="dates" selectionMode="range" (onSelect)="actualizarFechaBloqueo($event)" (onClearClick)="limpiarFecha($event)" showButtonBar="true" [locale]="es" dateFormat="dd/mm/yy" ></p-calendar> -->
+          <!--       <p-calendar
+ [hideOnDateTimeSelect] ="false" [(ngModel)]="dates" selectionMode="range" (onSelect)="actualizarFechaBloqueo($event)" (onClearClick)="limpiarFecha($event)" showButtonBar="true" [locale]="es" dateFormat="dd/mm/yy" ></p-calendar> -->
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             [(ngModel)]="dates"
             selectionMode="multiple"
             [readonlyInput]="true"
@@ -16,7 +18,8 @@
             [locale]="es"
             [showButtonBar]="true"
           ></p-calendar>
-          <!--   <p-calendar (onChange)="bloquerAgenda($event)"  onSelect[(ngModel)]="dates" placeholder="Seleccione fechas a bloquear"    [monthNavigator]="true"  [yearNavigator]="true" yearRange="1900:2100" selectionMode="range"  [locale]="es" dateFormat="dd/mm/yy"   [readonlyInput]="true"></p-calendar> -->
+          <!--   <p-calendar
+ [hideOnDateTimeSelect] ="false" (onChange)="bloquerAgenda($event)"  onSelect[(ngModel)]="dates" placeholder="Seleccione fechas a bloquear"    [monthNavigator]="true"  [yearNavigator]="true" yearRange="1900:2100" selectionMode="range"  [locale]="es" dateFormat="dd/mm/yy"   [readonlyInput]="true"></p-calendar> -->
         </div>
         <div class="col-1">
           <button
@@ -36,6 +39,7 @@
         </div>
         <div class="col-5 float-left">
           <p-calendar
+            [hideOnDateTimeSelect]="false"
             [ngModel]="fechaHoy"
             (onSelect)="actualizarFecha($event)"
             [locale]="es"

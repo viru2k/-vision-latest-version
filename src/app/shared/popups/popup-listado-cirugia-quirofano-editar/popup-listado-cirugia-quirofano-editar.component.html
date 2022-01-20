@@ -5,6 +5,7 @@
     </div>
 
     <p-calendar
+      [hideOnDateTimeSelect]="false"
       formControlName="fecha_hora"
       [showTime]="true"
       (onSelect)="actualizarFecha($event)"

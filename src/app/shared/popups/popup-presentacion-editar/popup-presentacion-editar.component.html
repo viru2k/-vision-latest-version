@@ -51,6 +51,7 @@
         </div>
 
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="fecha_desde"
           (onSelect)="actualizarFechaDesde($event)"
           [locale]="es"
@@ -65,6 +66,7 @@
         </div>
 
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="fecha_hasta"
           (onSelect)="actualizarFechaHasta($event)"
           [locale]="es"
@@ -79,6 +81,7 @@
         </div>
 
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           formControlName="numero"
           (onSelect)="actualizarNumero($event)"
           [locale]="es"

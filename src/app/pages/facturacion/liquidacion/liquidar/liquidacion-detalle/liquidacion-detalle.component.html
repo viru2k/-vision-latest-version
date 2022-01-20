@@ -50,6 +50,7 @@
       <div class="btn-group mr-1 d-flex align-items-center" role="group">
         <span class="pr-1 pt-1"><h6>Desde:</h6></span>
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           [inputStyle]="{ height: '29.1px' }"
           [showTime]="true"
           class="mr-2"
@@ -58,6 +59,7 @@
           [locale]="es"
           dateFormat="dd/mm/yy"
           [readonlyInput]="false"
+          [hideOnDateTimeSelect]="false"
         >
           <ng-template pTemplate="date" let-date>
             <span
@@ -74,6 +76,7 @@
         </p-calendar>
         <span class="pr-1 pt-1"><h6>Hasta:</h6></span>
         <p-calendar
+          [hideOnDateTimeSelect]="false"
           [inputStyle]="{ height: '29.1px' }"
           [showTime]="true"
           class="mr-2"

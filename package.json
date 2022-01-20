@@ -1,7 +1,7 @@
 {
   "name": "vision-latest-version",
-  "version": "2.1.5",
-  "updateddate": "2021-12-09 15:55",
+  "version": "2.1.8",
+  "updateddate": "2022-01-20 12:55",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",

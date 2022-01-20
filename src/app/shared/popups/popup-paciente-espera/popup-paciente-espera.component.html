@@ -10,6 +10,7 @@
         <form [formGroup]="DateForm">
           <div class="btn-group" role="group">
             <p-calendar
+              [hideOnDateTimeSelect]="false"
               class="mr-2"
               formControlName="fechaHoy"
               [monthNavigator]="true"
@@ -451,12 +452,7 @@
               <td style="width: 4%">
                 <a (click)="verMotivo($event, op, agendaTurno)">
                   <i
-                    class="
-                      pointer
-                      fas
-                      fa-user-astronaut fa-2x
-                      icon-color-orange-light
-                    "
+                    class="pointer fas fa-user-astronaut fa-2x icon-color-orange-light"
                     *ngIf="
                       agendaTurno.es_observacion === 'CONTROL PREQUIRURGICO'
                     "
@@ -486,12 +482,7 @@
                 ></a>
                 <a (click)="verMotivo($event, op, agendaTurno)">
                   <i
-                    class="
-                      pointer
-                      fas
-                      fa-exclamation-circle fa-2x
-                      icon-color-red
-                    "
+                    class="pointer fas fa-exclamation-circle fa-2x icon-color-red"
                     *ngIf="agendaTurno.es_observacion === 'ADVERTENCIA'"
                   ></i
                 ></a>
@@ -509,34 +500,19 @@
                 ></a>
                 <a (click)="verMotivo($event, op, agendaTurno)">
                   <i
-                    class="
-                      pointer
-                      far
-                      fa-address-card fa-2x
-                      icon-color-green-light
-                    "
+                    class="pointer far fa-address-card fa-2x icon-color-green-light"
                     *ngIf="agendaTurno.es_observacion === 'SOLICITUD DE TURNO'"
                   ></i
                 ></a>
                 <a (click)="verMotivo($event, op, agendaTurno)">
                   <i
-                    class="
-                      pointer
-                      fas
-                      fa-procedures fa-2x
-                      icon-color-green-light
-                    "
+                    class="pointer fas fa-procedures fa-2x icon-color-green-light"
                     *ngIf="agendaTurno.es_observacion === 'CIRUGIA'"
                   ></i
                 ></a>
                 <a (click)="verMotivo($event, op, agendaTurno)">
                   <i
-                    class="
-                      pointer
-                      fas
-                      fa-briefcase-medical fa-2x
-                      icon-color-blue
-                    "
+                    class="pointer fas fa-briefcase-medical fa-2x icon-color-blue"
                     *ngIf="agendaTurno.es_observacion === 'CONSULTA'"
                   ></i
                 ></a>

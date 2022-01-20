@@ -36,6 +36,7 @@
               <label>Fecha de matriculación</label>
             </div>
             <p-calendar
+              [hideOnDateTimeSelect]="false"
               formControlName="fecha_matricula"
               [locale]="es"
               dateFormat="dd/mm/yy"
@@ -80,6 +81,7 @@
           <div class="form-group">
             <label>Fecha alta</label>
             <p-calendar
+              [hideOnDateTimeSelect]="false"
               formControlName="fecha_alta_afip"
               [locale]="es"
               dateFormat="dd/mm/yy"

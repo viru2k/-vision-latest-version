@@ -5,6 +5,7 @@
         <form [formGroup]="DateForm">
           <div class="btn-group" role="group">
             <p-calendar
+              [hideOnDateTimeSelect]="false"
               class="mr-2"
               formControlName="fechaHoy"
               (onSelect)="actualizarFecha($event)"
@@ -63,6 +64,7 @@
               <div class="btn-group mr-1" role="group">
                 <span class="pr-1 pt-1"><h6>Desde:</h6></span>
                 <p-calendar
+                  [hideOnDateTimeSelect]="false"
                   [inputStyle]="{ height: '29.1px' }"
                   [showTime]="true"
                   class="mr-2"
@@ -87,6 +89,7 @@
                 </p-calendar>
                 <span class="pr-1 pt-1"><h6>Hasta:</h6></span>
                 <p-calendar
+                  [hideOnDateTimeSelect]="false"
                   [inputStyle]="{ height: '29.1px' }"
                   [showTime]="true"
                   class="mr-2"
@@ -422,12 +425,7 @@
                 ></a>
                 <a (click)="verMotivo($event, op, agendaTurno)">
                   <i
-                    class="
-                      pointer
-                      fas
-                      fa-exclamation-circle fa-2x
-                      icon-color-red
-                    "
+                    class="pointer fas fa-exclamation-circle fa-2x icon-color-red"
                     *ngIf="agendaTurno.es_observacion === 'ADVERTENCIA'"
                   ></i
                 ></a>
